@@ -17,71 +17,110 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
+
+	<style>
+		.teste {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.espaco-interno {
+			padding: 30px;
+		}
+
+		.centralizar-titulo {
+			text-align: center;
+		}
+
+		.mudanca-cor {
+			background-color: #dc3545;
+			border-color: #dc3545;
+			color: #fff;
+		}
+
+		.mudanca-cor:hover {
+			background-color: #c82333;
+			border-color: #c82333;
+		}
+
+		.sem-border-radius {
+			border-radius: 0;
+			color: #fff;
+		}
+	</style>
 </head>
 
 <body>
-	<div class="container-fluid">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Navbar</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Ecommerce</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Dropdown
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-					</li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Página Inicial<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Categorias
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Celulares</a>
+						<a class="dropdown-item" href="#">Informática</a>
+						<a class="dropdown-item" href="#">Jogos</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Todos os Produtos<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Contato<span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0 mudanca-cor" type="submit">Procurar</button>
+			</form>
+		</div>
+	</nav>
+
+	<div class="container">
+		{% for i in range(0, 5) %}
+		<div class="row">
+			{% for i in range(0, 4) %}
+			<div class="col teste">
+				<div class="card" style="width: 14rem;">
+					<img class="card-img-top espaco-interno" src="../static/img/outline_add_a_photo_black_48dp.png"
+						alt="Card image cap">
+					<div class="dropdown-divider"></div>
+					<div class="card-body">
+						<h5 class="card-title centralizar-titulo">Nome do Produto</h5>
+						<p class="card-text">Descrição.</p>
+						<div class="dropdown-divider"></div>
+						<p class="card-text">R$ Preço.</p>
+						<a href="#" class="btn btn-primary mudanca-cor">Adicionar ao Carrinho</a>
+					</div>
+				</div>
 			</div>
-		</nav>
-		<h1> Hello, {{ user.username }}! </h1>
-
-		{% for post in posts %}
-		<div>
-			<p> {{ post.author.username }} says :
-				<b> {{ post.body }} </b>
-			</p>
+			{% endfor %}
 		</div>
 		{% endfor %}
 	</div>
 
-	<div class="card text-center">
+	<div class="card text-center bg-dark sem-border-radius">
 		<div class="card-header">
-		  Featured
+			Todos os direitos reservados à joao.vitoo.batista@gmail.com
 		</div>
 		<div class="card-body">
-		  <h5 class="card-title">Special title treatment</h5>
-		  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-		  <a href="#" class="btn btn-primary">Go somewhere</a>
+			<h5 class="card-title">Ecommerce</h5>
+			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			<a href="#" class="btn btn-primary">Ir para Todos os Produtos</a>
 		</div>
-		<div class="card-footer text-muted">
-		  2 days ago
-		</div>
-	  </div>
+	</div>
 </body>
 
 </html>
