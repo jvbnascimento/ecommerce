@@ -87,8 +87,17 @@
 			</form>
 		</div>
 	</nav>
-
-	<div class="container">
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+	{% block content %}
+	<!-- <div class="container">
 		{% for i in range(0, 5) %}
 		<div class="row">
 			{% for i in range(0, 4) %}
@@ -109,11 +118,11 @@
 			{% endfor %}
 		</div>
 		{% endfor %}
-	</div>
-
+	</div> -->
+	{% endblock %}
 	<div class="card text-center bg-dark sem-border-radius">
 		<div class="card-header">
-			Todos os direitos reservados à joao.vitoo.batista@gmail.com
+			Todos os direitos reservados à joao.vitoor.batista@gmail.com
 		</div>
 		<div class="card-body">
 			<h5 class="card-title">Ecommerce</h5>
@@ -122,4 +131,5 @@
 		</div>
 	</div>
 </body>
+
 </html>
