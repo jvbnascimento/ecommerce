@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, request
 
 from app import app
 
@@ -22,9 +22,10 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    form = LoginForm(request.form)
+
     if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.username.data, form.remember_me.data))
+        flash('Login solicitado por email {}, lembrar_me={}'.format(
+            form.email.data, form.lembrar_me.data))
         return redirect('/index')
-    return render_template('login.html', title='Sign In', form = form)
+    return render_template('modelo_login.html', title='Sign In', form = form)

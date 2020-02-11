@@ -18,6 +18,8 @@ docs/_build/
 /venv
 /_pycache_
 /.vscode
+/env
+
 # Coverage reports
 htmlcov/
 .coverage
