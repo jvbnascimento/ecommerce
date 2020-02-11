@@ -3,22 +3,16 @@
 {% block content %}
 <div class="container"><br>
     <div class="row align-items-center justify-content-center">
-        <div class="col-md-4">
-            <h1>Acesse sua conta</h1>
+        <div class="col-md-4 border-redor">
+            <h1 class="centralizar-titulo">Acesse sua conta</h1>
             <form action="" method="POST" novalidate>
                 {{ form.hidden_tag() }}
                 <div class="form-group">
                     <label for="exampleInputEmail1">{{ form.email.label }}</label>
-                    <input 
-                        type="email" 
-                        class="form-control" 
-                        id="exampleInputU1" 
-                        name="email"
-                        aria-describedby="emailHelp"
-                    >
-                    <small 
-                        id="emailHelp" 
-                        class="form-text text-muted">Nós nunca compartilharemos suas credenciais com ninguém.
+                    <input type="email" class="form-control" id="exampleInputU1" name="email"
+                        aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">Nós nunca compartilharemos suas credenciais com
+                        ninguém.
                     </small>
                 </div>
 
@@ -33,7 +27,12 @@
                 </div>
                 <button type="submit" name="acessar" class="btn btn-primary">Acessar</button>
             </form>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Não tem uma conta? Cadastre-se</a>
+            <a class="dropdown-item" href="#">Esqueceu a senha?</a>
+            <br>
         </div>
-    </div>
+    </div><br>
 </div>
 {% endblock %}
