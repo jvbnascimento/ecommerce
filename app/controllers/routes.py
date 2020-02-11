@@ -2,23 +2,15 @@ from flask import render_template, flash, redirect, request
 
 from app import app
 
-from app.login import LoginForm
+from app.models.login import LoginForm
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'username': 'João'}
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('modelo_index.html', title='Home', user=user, posts=posts)
+    user = ''#{'username': 'João Vitor'}
+    form = LoginForm(request.form)
+    
+    return render_template('index.html', title='Ecommerce - Página Inicial', user=user, form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,4 +20,5 @@ def login():
         flash('Login solicitado por email {}, lembrar_me={}'.format(
             form.email.data, form.lembrar_me.data))
         return redirect('/index')
+
     return render_template('modelo_login.html', title='Sign In', form = form)
