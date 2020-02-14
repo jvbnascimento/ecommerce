@@ -6,9 +6,8 @@ class Config(object):
     DEBUG = True
     TESTING = False
     CSRF_ENABLED = True
-    # NO WINDOWS
-    # set DATABASE_URL = "postgresql://postgres:d4t4b4S3@localhost:5432/ecommerce"
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    DATABASE_URL = "postgresql://desenvolvimento:abc,123@34.95.201.225:5432/ecommerce"
+    SQLALCHEMY_DATABASE_URI = DATABASE_URL
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(Config):
