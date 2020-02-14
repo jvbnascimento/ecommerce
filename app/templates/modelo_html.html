@@ -6,31 +6,18 @@
 	{% else %}
 	<title> Welcome to Home Page </title>
 	{% endif %}
-	<meta 
-		name="viewport" 
-		content="width=device-width, initial-scale=1.0"
-	>
-	<link 
-		rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
-		crossorigin="anonymous"
-	>
-	<script 
-		src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"
-	></script>
-	<script 
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"
-	></script>
-	<script 
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"
-	></script>
+		crossorigin="anonymous"></script>
 
 	<style>
 		.teste {
@@ -80,7 +67,8 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="{{ url_for('index') }}">Página Inicial<span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="{{ url_for('index') }}">Página Inicial<span
+							class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -103,6 +91,7 @@
 
 			<!-- ====================================================================================================== -->
 			<!-- FAZER LOGIN -->
+			{% if url == '' or url == 'index' or url == 'user' %}
 			<div class="dropdown">
 				<a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -112,7 +101,7 @@
 					Fazer Login
 					{% endif %}
 				</a>
-				
+
 				<div class="dropdown-menu dropdown-menu-right">
 					{% if not user %}
 					<form class="px-3 py-2" action="" method="POST" novalidate>
@@ -138,16 +127,23 @@
 						<button type="submit" name="acessar" class="btn btn-primary">Acessar</button>
 					</form>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Não tem uma conta? Cadastre-se</a>
+					<a class="dropdown-item" href="{{ url_for('cadastrar') }}">Não tem uma conta? Cadastre-se</a>
 					<a class="dropdown-item" href="#">Esqueceu a senha?</a>
-					{% else %}
+					{% elif user.tipo == 2 %}
 					<a class="dropdown-item" href="#">Minhas compras</a>
 					<a class="dropdown-item" href="#">Meus dados</a>
+					{% elif user.tipo == 1 %}
+					<a class="dropdown-item" href="#">Gerenciar Estoque</a>
+					<a class="dropdown-item" href="#">Gerenciar Cadastros</a>
+					<a class="dropdown-item" href="#">Relatórios</a>
+					<!-- <a class="dropdown-item" href="#"></a> -->
 					<a class="dropdown-item" href="{{ url_for('logout') }}">Sair</a>
 					{% endif %}
 				</div>
 			</div>
+			{% endif %}
 		</div>
+		
 		<!-- ====================================================================================================== -->
 		<!-- <form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">

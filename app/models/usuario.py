@@ -10,6 +10,7 @@ class Usuario(UserMixin, db.Model):
 	email = db.Column(db.String(120), index=True, unique=True)
 	nome = db.Column(db.String(64), index=True)
 	senha_hash = db.Column(db.String(128))
+	tipo = db.Column(db.Integer)
 	
 	def __repr__(self):
 		return '<Email {}>'.format(self.email)

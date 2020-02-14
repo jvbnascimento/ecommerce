@@ -1,19 +1,26 @@
 from flask import render_template, flash, redirect, request, url_for
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
+
+from werkzeug.urls import url_parse
 
 from app import app
+from app import db
 
-from app.controllers.forms import LoginForm
+from app.controllers.forms import LoginForm, RegistrationForm
+
 from app.models.usuario import Usuario
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     if current_user.is_authenticated:
         return redirect(url_for('index_user'))
     
-    form = LoginForm(request.form)
+    form = LoginForm()
     usuario = ''
+
+    current_url = request.url.split('/')
+    current_url = current_url[len(current_url)-1]
 
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email = form.email.data).first()
@@ -23,14 +30,21 @@ def index():
             return redirect(url_for('login'))
         
         login_user(usuario, remember = form.lembrar_me.data)
-        return redirect(url_for('index_user'))
+        next_page = request.args.get('next')
 
-    return render_template('index.html', title='Ecommerce - Página Inicial', user=usuario, form=form)
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)
+
+    return render_template('index.html', title='Ecommerce - Página Inicial', user=usuario, form=form, url=current_url)
 
 @app.route('/user')
 def index_user():
     if current_user.is_authenticated:
-        return render_template('index.html', title='Ecommerce - Página Inicial - ' + current_user.nome, user=current_user)
+        current_url = request.url.split('/')
+        current_url = current_url[len(current_url)-1]
+
+        return render_template('index.html', title='Ecommerce - Página Inicial - ' + current_user.nome, user=current_user, url=current_url)
     return redirect(url_for('index'))
 
 
@@ -39,7 +53,9 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index_user'))
     
-    form = LoginForm(request.form)
+    form = LoginForm()
+    current_url = request.url.split('/')
+    current_url = current_url[len(current_url)-1]
 
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email = form.email.data).first()
@@ -51,9 +67,30 @@ def login():
         login_user(usuario, remember = form.lembrar_me.data)
         return redirect(url_for('index_user'))
 
-    return render_template('login.html', title='Ecommerce - Página Inicial', form = form)
+    return render_template('login.html', title='Ecommerce - Página Inicial', form = form, url=current_url)
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route('/cadastrar', methods=['GET', 'POST'])
+def cadastrar():
+    if current_user.is_authenticated:
+        return redirect(url_for('index_user'))
+    
+    form = RegistrationForm()
+    current_url = request.url.split('/')
+    current_url = current_url[len(current_url)-1]
+
+    if form.validate_on_submit():
+        usuario = Usuario(nome=form.nome.data, email=form.email.data, tipo=2)
+        usuario.set_password(form.senha.data)
+        db.session.add(usuario)
+        db.session.commit()
+
+        flash('Parabéns, seu cadastro foi concluído com êxito!')
+        return redirect(url_for('login'))
+
+    return render_template('cadastro.html', title = 'Ecommerce - Cadastre-se', form = form, url=current_url)
