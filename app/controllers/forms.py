@@ -22,3 +22,8 @@ class RegistrationForm(FlaskForm):
 
         if usuario is not None:
             raise ValidationError('Este email já está em uso. Escolha um email diferente e tente novamente.')
+
+class CadastroProdutoForm(FlaskForm):
+    descricao = StringField('Nome Produto', validators=[DataRequired()])
+    quantidade = StringField('Quantidade', validators=[DataRequired()])
+    preco = StringField('R$ Preço', validators=[DataRequired()])

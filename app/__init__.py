@@ -17,4 +17,4 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 
 from app.controllers import routes
-from app.models import usuario
+from app.models import usuario, produto, categoria
