@@ -1,0 +1,138 @@
+{% extends "modelo_html.html" %}
+
+{% block content %}
+<!-- <nav class="navbar navbar-expand-lg navbar-secondary bg-warning">
+	<div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+		<div class="accordion" id="accordionExample">
+			<button class="btn btn-dark bg-warning espaco-externo" data-toggle="collapse"
+				data-target="#lista-produtos" aria-expanded="true" aria-controls="lista-produtos">
+				<img src="../static/img/outline_list_black_24dp.png" class="align-self-center" alt="Listar Produtos"
+					title="Listar Produtos" />
+			</button>
+
+			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
+				data-target="#form-adicionar-produto" aria-expanded="false" aria-controls="form-adicionar-produto">
+				<img src="../static/img/outline_add_black_24dp.png" class="align-self-center" alt="Adicionar Produto"
+					title="Adicionar Produto" />
+			</button>
+
+			<button class="btn btn-dark bg-warning collapsed espaco-externo">
+				<img src="../static/img/outline_edit_black_24dp.png" class="align-self-center" alt="Editar Produto"
+					title="Editar Produto" />
+			</button>
+
+			<button class="btn btn-dark bg-warning collapsed espaco-externo">
+				<img src="../static/img/outline_delete_black_24dp.png" class="align-self-center" alt="Deletar Produto"
+					title="Deletar Produto" />
+			</button>
+		</div>
+	</div>
+</nav> -->
+
+<!-- <div class="collapse show" id="lista-produtos" data-parent="#accordionExample">
+	<div class="card card-body">
+		Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+		keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+	</div>
+</div>
+
+<div class="collapse" id="form-adicionar-produto" data-parent="#accordionExample">
+	<div class="card card-body">
+		Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+		keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+	</div>
+</div> -->
+
+
+<div class="accordion" id="accordionExample">
+	<div class="card bg-warning sem-border-radius">
+		<div class="card-header" id="headingOne">
+			<button class="btn btn-dark bg-warning espaco-externo" data-toggle="collapse" data-target="#lista-produtos"
+				aria-expanded="true" aria-controls="lista-produtos">
+				<img src="../static/img/outline_list_black_24dp.png" class="align-self-center" alt="Listar Produtos"
+					title="Listar Produtos" />
+				<span class="fonte-preta">Listar Produtos</span>
+			</button>
+		</div>
+
+		<div id="lista-produtos" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+			<div class="card-body bg-light">
+				<div class="container">
+					{% for i in range(0, 5) %}
+					<div class="row">
+						{% for i in range(0, 4) %}
+						<div class="col teste">
+							<div class="card fonte-preta">
+								<img class="card-img-top espaco-interno"
+									src="../static/img/outline_add_a_photo_black_48dp.png" alt="Card image cap">
+
+								<div class="dropdown-divider"></div>
+
+								<div class="card-body">
+									<h5 class="card-title centralizar-titulo">Nome do Produto</h5>
+									<p class="card-text">Descrição.</p>
+
+									<div class="dropdown-divider"></div>
+
+									<p class="card-text">R$ Preço.</p>
+									<a href="#" class="btn btn-danger btn-block">Adicionar ao Carrinho</a>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="card bg-warning sem-border-radius">
+		<div class="card-header" id="headingTwo">
+			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
+				data-target="#form-adicionar-produto" aria-expanded="false" aria-controls="form-adicionar-produto">
+				<img src="../static/img/outline_add_black_24dp.png" class="align-self-center" alt="Adicionar Produto"
+					title="Adicionar Produto" />
+				<span class="fonte-preta">Adicionar Produtos</span>
+			</button>
+		</div>
+
+		<div id="form-adicionar-produto" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+			<div class="card-body">
+			</div>
+		</div>
+	</div>
+
+	<div class="card bg-warning sem-border-radius">
+		<div class="card-header" id="headingTwo">
+			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
+				data-target="#form-editar-produto" aria-expanded="false" aria-controls="form-editar-produto">
+				<img src="../static/img/outline_edit_black_24dp.png" class="align-self-center" alt="Editar Produto"
+					title="Editar Produto" />
+				<span class="fonte-preta">Editar Produtos</span>
+			</button>
+		</div>
+
+		<div id="form-editar-produto" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+			<div class="card-body">
+			</div>
+		</div>
+	</div>
+
+	<div class="card bg-warning sem-border-radius">
+		<div class="card-header" id="headingTwo">
+			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
+				data-target="#deletar-produto" aria-expanded="false" aria-controls="deletar-produto">
+				<img src="../static/img/outline_delete_black_24dp.png" class="align-self-center" alt="Deletar Produto"
+					title="Deletar Produto" />
+				<span class="fonte-preta">Deletar Produtos</span>
+			</button>
+		</div>
+
+		<div id="deletar-produto" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+			<div class="card-body">
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

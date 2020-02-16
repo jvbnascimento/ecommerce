@@ -19,8 +19,8 @@ def index():
     form = LoginForm()
     usuario = ''
 
-    current_url = request.url.split('/')
-    current_url = current_url[len(current_url)-1]
+    current_url = request.url.split('5500/')
+    current_url = current_url[1]
 
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email = form.email.data).first()
@@ -41,8 +41,8 @@ def index():
 @app.route('/user')
 def index_user():
     if current_user.is_authenticated:
-        current_url = request.url.split('/')
-        current_url = current_url[len(current_url)-1]
+        current_url = request.url.split('5500/')
+        current_url = current_url[1]
 
         return render_template('index.html', title='Ecommerce - Página Inicial - ' + current_user.nome, user=current_user, url=current_url)
     return redirect(url_for('index'))
@@ -54,8 +54,8 @@ def login():
         return redirect(url_for('index_user'))
     
     form = LoginForm()
-    current_url = request.url.split('/')
-    current_url = current_url[len(current_url)-1]
+    current_url = request.url.split('5500/')
+    current_url = current_url[1]
 
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email = form.email.data).first()
@@ -76,21 +76,31 @@ def logout():
     return redirect(url_for('index'))
 
 @app.route('/cadastrar', methods=['GET', 'POST'])
-def cadastrar():
+def cadastrar_usuario():
     if current_user.is_authenticated:
         return redirect(url_for('index_user'))
     
     form = RegistrationForm()
-    current_url = request.url.split('/')
-    current_url = current_url[len(current_url)-1]
+    current_url = request.url.split('5500/')
+    current_url = current_url[1]
 
     if form.validate_on_submit():
         usuario = Usuario(nome=form.nome.data, email=form.email.data, tipo=2)
-        usuario.set_password(form.senha.data)
+        usuario.set_senha(form.senha.data)
         db.session.add(usuario)
         db.session.commit()
 
         flash('Parabéns, seu cadastro foi concluído com êxito!')
         return redirect(url_for('login'))
 
-    return render_template('cadastro.html', title = 'Ecommerce - Cadastre-se', form = form, url=current_url)
+    return render_template('cadastro_usuario.html', title = 'Ecommerce - Cadastre-se', form = form, url=current_url)
+
+@app.route('/user/gerenciar_estoque')
+def gerenciar_estoque():
+    if current_user.is_authenticated and current_user.tipo == 1:
+        current_url = request.url.split('5500/')
+        current_url = current_url[1]
+
+        return render_template('gerenciar_estoque.html', title = 'Ecommerce - Estoque', url=current_url, user=current_user)
+    flash('Você não é um administrador do sistema.')
+    return redirect(url_for('index_user'))

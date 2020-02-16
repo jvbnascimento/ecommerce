@@ -1,8 +1,8 @@
-"""conectando ao ubuntu
+"""gerando tabela usuario
 
-Revision ID: 8ea62b1c86a5
+Revision ID: f446cd669727
 Revises: 
-Create Date: 2020-02-14 15:52:03.788568
+Create Date: 2020-02-15 10:07:48.905009
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8ea62b1c86a5'
+revision = 'f446cd669727'
 down_revision = None
 branch_labels = None
 depends_on = None
