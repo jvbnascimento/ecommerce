@@ -18,7 +18,7 @@ class Produto(db.Model):
         'Categoria', secondary=produto_categoria, backref=db.backref('produtos', lazy=True))
 
     def __repr__(self):
-        return '<Descricao {}>'.format(self.descricao)
+        return '<Descricao:{}, Quantidade:{}, Preco:{}, Imagem:{}>'.format(self.descricao, self.quantidade, self.preco, self.imagem)
 
     def load_produto(id):
         return Produto.query.get(int(id))

@@ -1,3 +1,5 @@
+import os
+
 from app import app
 from app import db
 
@@ -9,6 +11,8 @@ from werkzeug.urls import url_parse
 from app.controllers.forms import LoginForm, RegistrationForm, CadastroProdutoForm
 
 from app.models.usuario import Usuario
+from app.models.produto import Produto
+from app.models.categoria import Categoria
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -107,7 +111,21 @@ def gerenciar_estoque():
         current_url = current_url[1]
 
         form = CadastroProdutoForm()
+        lista_produtos = Produto.query.all()
 
-        return render_template('gerenciar_estoque.html', title='Ecommerce - Estoque', url=current_url, user=current_user, form=form)
+        if form.validate_on_submit():
+            imagem_caminho = "../static/img/" + str(form.imagem.data.filename)
+
+            c = Categoria(nome='Teste')
+
+            produto = Produto(descricao=form.descricao.data, quantidade=form.quantidade.data, preco=form.preco.data, imagem=imagem_caminho, categorias_produto=[c])
+
+            db.session.add(produto)
+            db.session.commit()
+
+            flash('Parabéns, seu cadastro foi concluído com êxito!')
+            return redirect(url_for('index_user'))
+
+        return render_template('gerenciar_estoque.html', title='Ecommerce - Estoque', url=current_url, user=current_user, form=form, produtos=lista_produtos)
     flash('Você não é um administrador do sistema.')
     return redirect(url_for('index_user'))

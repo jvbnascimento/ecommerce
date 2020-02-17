@@ -15,23 +15,23 @@
 		<div id="lista-produtos" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 			<div class="card-body bg-light">
 				<div class="container">
-					{% for i in range(0, 5) %}
+					{% if produtos != None %}
+					{% for p in produtos %}
 					<div class="row">
 						{% for i in range(0, 4) %}
 						<div class="col teste">
 							<div class="card fonte-preta">
-								<img class="card-img-top espaco-interno"
-									src="../static/img/outline_add_a_photo_black_48dp.png" alt="Card image cap">
+								<img class="card-img-top espaco-interno" src="{{ p.imagem }}" alt="Card image cap">
 
 								<div class="dropdown-divider"></div>
 
 								<div class="card-body">
-									<h5 class="card-title centralizar-titulo">Nome do Produto</h5>
-									<p class="card-text">Descrição.</p>
+									<h5 class="card-title centralizar-titulo">{{ p.descricao }}</h5>
+									<p class="card-text">Quantidade - {{ p.quantidade }}</p>
 
 									<div class="dropdown-divider"></div>
 
-									<p class="card-text">R$ Preço.</p>
+									<p class="card-text">R$ {{ p.preco }}</p>
 									<a href="#" class="btn btn-danger btn-block">Adicionar ao Carrinho</a>
 								</div>
 							</div>
@@ -39,6 +39,7 @@
 						{% endfor %}
 					</div>
 					{% endfor %}
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -60,11 +61,12 @@
 					<div class="row align-items-center justify-content-center">
 						<div class="col-md-4 bg-warning espaco-interno fonte-preta borda-preta borda-redonda">
 							<h2 class="centralizar-titulo">Cadastrar novo produto</h2>
-							<form action="" method="POST" enctype="multipart/form-data" novalidate>
+							<form action="" method="POST" enctype="multipart/form-data">
 								{{ form.hidden_tag() }}
 								<div class="form-group">
 									<label for="exampleInputDescricao1">
-										{{ form.descricao.label }}</label>
+										{{ form.descricao.label }}
+									</label>
 									<input type="text" class="form-control" id="exampleInputDescricao1"
 										name="descricao">
 									{% for error in form.descricao.errors %}
@@ -76,7 +78,8 @@
 
 								<div class="form-group">
 									<label for="exampleInputQuantidade1">
-										{{ form.quantidade.label }}</label>
+										{{ form.quantidade.label }}
+									</label>
 									<input type="text" class="form-control" name="quantidade"
 										id="exampleInputQuantidade1">
 									{% for error in form.quantidade.errors %}
@@ -90,21 +93,19 @@
 									<label for="exampleInputPreco1">
 										{{ form.preco.label }}
 									</label>
-									<input type="text" class="form-control" name="preco"
-										id="exampleInputPreco1">
+									<input type="text" class="form-control" name="preco" id="exampleInputPreco1">
 									{% for error in form.preco.errors %}
 									<span style="color: red;">
 										[{{ error }}]
 									</span>
 									{% endfor %}
 								</div>
-								
+
 								<div class="form-group">
 									<label for="exampleInputImagem1">
 										{{ form.imagem.label }}
 									</label>
-									<input type="file" class="form-control-file" name="preco"
-										id="exampleInputImagem1">
+									<input type="file" class="form-control-file" name="imagem" id="exampleInputImagem1">
 									{% for error in form.preco.errors %}
 									<span style="color: red;">
 										[{{ error }}]
@@ -112,7 +113,7 @@
 									{% endfor %}
 								</div><br>
 
-								<button type="submit" name="cadastrar" class="btn btn-dark btn-block">
+								<button type="submit" name="cadastrarProduto" class="btn btn-dark btn-block">
 									Cadastrar Produto
 								</button>
 							</form>
