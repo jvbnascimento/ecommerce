@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 from werkzeug.urls import url_parse
 
-from app.controllers.forms import LoginForm, RegistrationForm
+from app.controllers.forms import LoginForm, RegistrationForm, CadastroProdutoForm
 
 from app.models.usuario import Usuario
 
@@ -100,12 +100,14 @@ def cadastrar_usuario():
     return render_template('cadastro_usuario.html', title='Ecommerce - Cadastre-se', form=form, url=current_url)
 
 
-@app.route('/user/gerenciar_estoque')
+@app.route('/user/gerenciar_estoque', methods=['GET', 'POST'])
 def gerenciar_estoque():
     if current_user.is_authenticated and current_user.tipo == 1:
         current_url = request.url.split('5500/')
         current_url = current_url[1]
 
-        return render_template('gerenciar_estoque.html', title='Ecommerce - Estoque', url=current_url, user=current_user)
+        form = CadastroProdutoForm()
+
+        return render_template('gerenciar_estoque.html', title='Ecommerce - Estoque', url=current_url, user=current_user, form=form)
     flash('Você não é um administrador do sistema.')
     return redirect(url_for('index_user'))

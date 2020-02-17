@@ -1,49 +1,6 @@
 {% extends "modelo_html.html" %}
 
 {% block content %}
-<!-- <nav class="navbar navbar-expand-lg navbar-secondary bg-warning">
-	<div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
-		<div class="accordion" id="accordionExample">
-			<button class="btn btn-dark bg-warning espaco-externo" data-toggle="collapse"
-				data-target="#lista-produtos" aria-expanded="true" aria-controls="lista-produtos">
-				<img src="../static/img/outline_list_black_24dp.png" class="align-self-center" alt="Listar Produtos"
-					title="Listar Produtos" />
-			</button>
-
-			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
-				data-target="#form-adicionar-produto" aria-expanded="false" aria-controls="form-adicionar-produto">
-				<img src="../static/img/outline_add_black_24dp.png" class="align-self-center" alt="Adicionar Produto"
-					title="Adicionar Produto" />
-			</button>
-
-			<button class="btn btn-dark bg-warning collapsed espaco-externo">
-				<img src="../static/img/outline_edit_black_24dp.png" class="align-self-center" alt="Editar Produto"
-					title="Editar Produto" />
-			</button>
-
-			<button class="btn btn-dark bg-warning collapsed espaco-externo">
-				<img src="../static/img/outline_delete_black_24dp.png" class="align-self-center" alt="Deletar Produto"
-					title="Deletar Produto" />
-			</button>
-		</div>
-	</div>
-</nav> -->
-
-<!-- <div class="collapse show" id="lista-produtos" data-parent="#accordionExample">
-	<div class="card card-body">
-		Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-		keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-	</div>
-</div>
-
-<div class="collapse" id="form-adicionar-produto" data-parent="#accordionExample">
-	<div class="card card-body">
-		Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
-		keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-	</div>
-</div> -->
-
-
 <div class="accordion" id="accordionExample">
 	<div class="card bg-warning sem-border-radius">
 		<div class="card-header" id="headingOne">
@@ -98,7 +55,70 @@
 		</div>
 
 		<div id="form-adicionar-produto" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-			<div class="card-body">
+			<div class="card-body fundo-branco">
+				<div class="container"><br>
+					<div class="row align-items-center justify-content-center">
+						<div class="col-md-4 bg-warning espaco-interno fonte-preta borda-preta borda-redonda">
+							<h2 class="centralizar-titulo">Cadastrar novo produto</h2>
+							<form action="" method="POST" enctype="multipart/form-data" novalidate>
+								{{ form.hidden_tag() }}
+								<div class="form-group">
+									<label for="exampleInputDescricao1">
+										{{ form.descricao.label }}</label>
+									<input type="text" class="form-control" id="exampleInputDescricao1"
+										name="descricao">
+									{% for error in form.descricao.errors %}
+									<span style="color: red;">
+										[{{ error }}]
+									</span>
+									{% endfor %}
+								</div>
+
+								<div class="form-group">
+									<label for="exampleInputQuantidade1">
+										{{ form.quantidade.label }}</label>
+									<input type="text" class="form-control" name="quantidade"
+										id="exampleInputQuantidade1">
+									{% for error in form.quantidade.errors %}
+									<span style="color: red;">
+										[{{ error }}]
+									</span>
+									{% endfor %}
+								</div>
+
+								<div class="form-group">
+									<label for="exampleInputPreco1">
+										{{ form.preco.label }}
+									</label>
+									<input type="text" class="form-control" name="preco"
+										id="exampleInputPreco1">
+									{% for error in form.preco.errors %}
+									<span style="color: red;">
+										[{{ error }}]
+									</span>
+									{% endfor %}
+								</div>
+								
+								<div class="form-group">
+									<label for="exampleInputImagem1">
+										{{ form.imagem.label }}
+									</label>
+									<input type="file" class="form-control-file" name="preco"
+										id="exampleInputImagem1">
+									{% for error in form.preco.errors %}
+									<span style="color: red;">
+										[{{ error }}]
+									</span>
+									{% endfor %}
+								</div><br>
+
+								<button type="submit" name="cadastrar" class="btn btn-dark btn-block">
+									Cadastrar Produto
+								</button>
+							</form>
+						</div>
+					</div><br>
+				</div>
 			</div>
 		</div>
 	</div>

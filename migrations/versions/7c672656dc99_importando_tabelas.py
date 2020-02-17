@@ -1,8 +1,8 @@
-"""ajustando tabela categoria e criando relacionamento com tabela produto
+"""importando tabelas
 
-Revision ID: ba4d05922f7e
+Revision ID: 7c672656dc99
 Revises: 
-Create Date: 2020-02-16 19:01:17.153689
+Create Date: 2020-02-17 08:12:52.618399
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ba4d05922f7e'
+revision = '7c672656dc99'
 down_revision = None
 branch_labels = None
 depends_on = None

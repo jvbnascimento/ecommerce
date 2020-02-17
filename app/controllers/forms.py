@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from flask_wtf.file import FileRequired, FileAllowed
 
 from app.models.usuario import Usuario
 
@@ -27,3 +28,5 @@ class CadastroProdutoForm(FlaskForm):
     descricao = StringField('Nome Produto', validators=[DataRequired()])
     quantidade = StringField('Quantidade', validators=[DataRequired()])
     preco = StringField('R$ Preço', validators=[DataRequired()])
+    imagem = FileField(validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Somente imagens!')])
+    cadastrar = SubmitField('Cadastrar Produto')

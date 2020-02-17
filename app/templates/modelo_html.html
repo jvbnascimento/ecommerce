@@ -52,6 +52,14 @@
 			border-radius: 10px;
 		}
 
+		.borda-preta {
+			border: #000 1px solid;
+		}
+
+		.borda-redonda {
+			border-radius: 20px;
+		}
+
 		.espaco-externo {
 			margin-left: 5px;
 			margin-right: 5px;
@@ -94,7 +102,7 @@
 
 			<!-- ====================================================================================================== -->
 			<!-- FAZER LOGIN -->
-			{% if url.startswith('') or url.startswith('user') or url.startswith('index') %}
+			{% if url == '' or url.startswith('user') or url.startswith('index') %}
 			<div class="dropdown">
 				<a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
