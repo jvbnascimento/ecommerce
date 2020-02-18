@@ -8,8 +8,14 @@
         {% for i in range(0, 4) %}
         <div class="col teste">
             <div class="card">
+                <div class="row">
+                    <div class="col text-right">
+                        <h5><span class="badge badge-secondary md-8">{{ p.quantidade }}</span></h5>
+                    </div>
+                </div>
+                
                 <img 
-                    class="card-img-top espaco-interno redimensionar-imagem" 
+                    class="card-img-top espaco-interno img-fluid rounded mx-auto d-block" 
                     src="../static/img/{{ p.imagem }}"
                     alt="{{ p.descricao }}"
                 >
@@ -18,12 +24,14 @@
                 
                 <div class="card-body">
                     <h5 class="card-title centralizar-titulo">{{ p.descricao }}</h5>
-                    <p class="card-text">{{ p.quantidade }}</p>
                     
                     <div class="dropdown-divider"></div>
                     
                     <p class="card-text">R$ {{ p.preco }}</p>
+
+                    {% if user.tipo == 2 %}
                     <a href="#" class="btn btn-danger btn-block">Adicionar ao Carrinho</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

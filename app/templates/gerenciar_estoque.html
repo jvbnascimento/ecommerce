@@ -15,13 +15,14 @@
 		<div id="lista-produtos" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 			<div class="card-body bg-light">
 				<div class="container">
-					{% if produtos != None %}
+					{% if produtos != None and produtos|length != 0 %}
 					{% for p in produtos %}
 					<div class="row">
 						{% for i in range(0, 4) %}
 						<div class="col teste">
 							<div class="card fonte-preta">
-								<img class="card-img-top espaco-interno" src="{{ p.imagem }}" alt="{{ p.descricao }}">
+								<img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block" src="../static/img/{{ p.imagem }}"
+									alt="{{ p.descricao }}">
 
 								<div class="dropdown-divider"></div>
 
@@ -32,13 +33,36 @@
 									<div class="dropdown-divider"></div>
 
 									<p class="card-text">R$ {{ p.preco }}</p>
-									<a href="#" class="btn btn-danger btn-block">Adicionar ao Carrinho</a>
+
+									<nav class="navbar navbar-expand-md bg-faded justify-content-center">
+										<ul class="navbar-nav w-100 justify-content-center">
+											<li class="nav-item active">
+												<a class="nav-link" href="#">
+													<img src="../static/img/outline_edit_black_24dp.png"
+														class="align-self-center img-fluid rounded mx-auto d-block" alt="Editar Produto" title="Editar Produto" />
+												</a>
+											</li>
+
+											<li class="nav-item active">
+												<a class="nav-link" href="#">
+													<img src="../static/img/outline_delete_black_24dp.png"
+														class="align-self-center img-fluid rounded mx-auto d-block" alt="Deletar Produto" title="Deletar Produto" />
+												</a>
+											</li>
+										</ul>
+									</nav>
 								</div>
 							</div>
 						</div>
 						{% endfor %}
 					</div>
 					{% endfor %}
+					{% elif produtos|length == 0 %}
+					<div class="row">
+						<div class="col teste">
+							<h2 class="centralizar-titulo fonte-preta">Ainda não há produtos cadastrados.</h2>
+						</div>
+					</div>
 					{% endif %}
 				</div>
 			</div>
