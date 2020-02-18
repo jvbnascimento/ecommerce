@@ -1,8 +1,8 @@
-"""importando tabelas
+"""atualizando
 
-Revision ID: 7c672656dc99
+Revision ID: 023e93d5ed19
 Revises: 
-Create Date: 2020-02-17 08:12:52.618399
+Create Date: 2020-02-18 14:26:55.773101
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7c672656dc99'
+revision = '023e93d5ed19'
 down_revision = None
 branch_labels = None
 depends_on = None

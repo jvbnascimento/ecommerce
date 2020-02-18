@@ -16,7 +16,8 @@ from app.models.produto import Produto
 from app.models.categoria import Categoria
 
 dirpath = os.getcwd()
-UPLOAD_FOLDER = dirpath + '\\app\\static\\img\\'
+UPLOAD_FOLDER = dirpath + '/app/static/img/'
+current_port = '8080/'
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -27,7 +28,7 @@ def index():
     form = LoginForm()
     usuario = ''
 
-    current_url = request.url.split('5500/')
+    current_url = request.url.split(current_port)
     current_url = current_url[1]
 
     lista_produtos = Produto.query.all()
@@ -52,7 +53,7 @@ def index():
 @app.route('/user')
 def index_user():
     if current_user.is_authenticated:
-        current_url = request.url.split('5500/')
+        current_url = request.url.split(current_port)
         current_url = current_url[1]
 
         lista_produtos = Produto.query.all()
@@ -67,7 +68,7 @@ def login():
         return redirect(url_for('index_user'))
 
     form = LoginForm()
-    current_url = request.url.split('5500/')
+    current_url = request.url.split(current_port)
     current_url = current_url[1]
 
     if form.validate_on_submit():
@@ -96,7 +97,7 @@ def cadastrar_usuario():
         return redirect(url_for('index_user'))
 
     form = RegistrationForm()
-    current_url = request.url.split('5500/')
+    current_url = request.url.split(current_port)
     current_url = current_url[1]
 
     if form.validate_on_submit():
@@ -114,7 +115,7 @@ def cadastrar_usuario():
 @app.route('/user/gerenciar_estoque', methods=['GET', 'POST'])
 def gerenciar_estoque():
     if current_user.is_authenticated and current_user.tipo == 1:
-        current_url = request.url.split('5500/')
+        current_url = request.url.split(current_port)
         current_url = current_url[1]
 
         form = CadastroProdutoForm()
