@@ -28,5 +28,5 @@ class CadastroProdutoForm(FlaskForm):
     descricao = StringField('Nome Produto', validators=[DataRequired()])
     quantidade = StringField('Quantidade', validators=[DataRequired()])
     preco = StringField('R$ Preço', validators=[DataRequired()])
-    imagem = StringField('Imagem', validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Somente imagens!')])
+    # imagem = FileField('Imagem', validators=[FileRequired(), FileAllowed(['jpg', 'png'], 'Somente imagens!')])
     cadastrarProduto = SubmitField('Cadastrar Produto')
