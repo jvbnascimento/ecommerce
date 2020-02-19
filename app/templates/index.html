@@ -3,9 +3,11 @@
 {% block content %}
 <div class="container">
     {% if produtos != None %}
-    {% for p in produtos %}
+    {% set condicao = 5 %}
+    {% set indice_atual = 0 %}
+    {% for indice_atual in range(0, condicao) %}
     <div class="row">
-        {% for i in range(0, 4) %}
+        {% for i in range(indice_atual, condicao) %}
         <div class="col teste">
             <div class="card">
                 <div class="row">
@@ -29,7 +31,7 @@
                     
                     <p class="card-text">R$ {{ p.preco }}</p>
 
-                    {% if user.tipo == 2 %}
+                    {% if user.tipo == 2 or not user %}
                     <a href="#" class="btn btn-danger btn-block">Adicionar ao Carrinho</a>
                     {% endif %}
                 </div>
