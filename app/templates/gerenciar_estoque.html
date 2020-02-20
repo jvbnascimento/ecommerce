@@ -2,9 +2,9 @@
 
 {% block content %}
 <div class="accordion" id="accordionExample">
-	<div class="card bg-warning sem-border-radius">
+	<div class="card bg-success sem-border-radius">
 		<div class="card-header" id="headingOne">
-			<button class="btn btn-dark bg-warning espaco-externo" data-toggle="collapse" data-target="#lista-produtos"
+			<button class="btn btn-dark bg-success espaco-externo" data-toggle="collapse" data-target="#lista-produtos"
 				aria-expanded="true" aria-controls="lista-produtos">
 				<img src="../static/img/outline_list_black_24dp.png" class="align-self-center" alt="Listar Produtos"
 					title="Listar Produtos" />
@@ -16,19 +16,23 @@
 			<div class="card-body bg-light">
 				<div class="container">
 					{% if produtos != None and produtos|length != 0 %}
-					{% for p in produtos %}
 					<div class="row">
-						{% for i in range(0, 4) %}
-						<div class="col teste">
+						{% for p in produtos %}
+						<div class="col-3 teste">
 							<div class="card fonte-preta">
+								<div class="row">
+									<div class="col text-right">
+										<h5><span class="badge badge-secondary md-8">{{ p.quantidade }}</span></h5>
+									</div>
+								</div>
+
 								<img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block" src="../static/img/{{ p.imagem }}"
 									alt="{{ p.descricao }}">
 
 								<div class="dropdown-divider"></div>
 
 								<div class="card-body">
-									<h5 class="card-title centralizar-titulo">{{ p.descricao }}</h5>
-									<p class="card-text">Quantidade - {{ p.quantidade }}</p>
+									<h5 class="card-title centralizar-titulo espaco-abaixo">{{ p.descricao }}</h5>
 
 									<div class="dropdown-divider"></div>
 
@@ -36,14 +40,14 @@
 
 									<nav class="navbar navbar-expand-md bg-faded justify-content-center">
 										<ul class="navbar-nav w-100 justify-content-center">
-											<li class="nav-item active">
+											<li class="nav-item bg-success espaco-externo borda-redonda">
 												<a class="nav-link" href="#">
 													<img src="../static/img/outline_edit_black_24dp.png"
 														class="align-self-center img-fluid rounded mx-auto d-block" alt="Editar Produto" title="Editar Produto" />
 												</a>
 											</li>
 
-											<li class="nav-item active">
+											<li class="nav-item bg-success espaco-externo borda-redonda">
 												<a class="nav-link" href="#">
 													<img src="../static/img/outline_delete_black_24dp.png"
 														class="align-self-center img-fluid rounded mx-auto d-block" alt="Deletar Produto" title="Deletar Produto" />
@@ -56,7 +60,6 @@
 						</div>
 						{% endfor %}
 					</div>
-					{% endfor %}
 					{% elif produtos|length == 0 %}
 					<div class="row">
 						<div class="col teste">
@@ -69,9 +72,9 @@
 		</div>
 	</div>
 
-	<div class="card bg-warning sem-border-radius">
+	<div class="card bg-success sem-border-radius">
 		<div class="card-header" id="headingTwo">
-			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
+			<button class="btn btn-dark bg-success collapsed espaco-externo" data-toggle="collapse"
 				data-target="#form-adicionar-produto" aria-expanded="false" aria-controls="form-adicionar-produto">
 				<img src="../static/img/outline_add_black_24dp.png" class="align-self-center" alt="Adicionar Produto"
 					title="Adicionar Produto" />
@@ -83,7 +86,7 @@
 			<div class="card-body fundo-branco">
 				<div class="container"><br>
 					<div class="row align-items-center justify-content-center">
-						<div class="col-md-4 bg-warning espaco-interno fonte-preta borda-preta borda-redonda">
+						<div class="col-md-4 bg-success espaco-interno fonte-preta borda-preta borda-redonda">
 							<h2 class="centralizar-titulo">Cadastrar novo produto</h2>
 							<form action="" method="POST" enctype="multipart/form-data">
 								{{ form.hidden_tag() }}
@@ -143,9 +146,9 @@
 		</div>
 	</div>
 
-	<div class="card bg-warning sem-border-radius">
+	<div class="card bg-success sem-border-radius">
 		<div class="card-header" id="headingTwo">
-			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
+			<button class="btn btn-dark bg-success collapsed espaco-externo" data-toggle="collapse"
 				data-target="#form-editar-produto" aria-expanded="false" aria-controls="form-editar-produto">
 				<img src="../static/img/outline_edit_black_24dp.png" class="align-self-center" alt="Editar Produto"
 					title="Editar Produto" />
@@ -159,9 +162,9 @@
 		</div>
 	</div>
 
-	<div class="card bg-warning sem-border-radius">
+	<div class="card bg-success sem-border-radius">
 		<div class="card-header" id="headingTwo">
-			<button class="btn btn-dark bg-warning collapsed espaco-externo" data-toggle="collapse"
+			<button class="btn btn-dark bg-success collapsed espaco-externo" data-toggle="collapse"
 				data-target="#deletar-produto" aria-expanded="false" aria-controls="deletar-produto">
 				<img src="../static/img/outline_delete_black_24dp.png" class="align-self-center" alt="Deletar Produto"
 					title="Deletar Produto" />

@@ -2,34 +2,28 @@
 
 {% block content %}
 <div class="container">
-    {% if produtos != None %}
-    {% set condicao = 5 %}
-    {% set indice_atual = 0 %}
-    {% for indice_atual in range(0, condicao) %}
+    {% if produtos != None and produtos|length != 0 %}
     <div class="row">
-        {% for i in range(indice_atual, condicao) %}
-        <div class="col teste">
+        {% for p in produtos %}
+        <div class="col-3 teste">
             <div class="card">
                 <div class="row">
                     <div class="col text-right">
                         <h5><span class="badge badge-secondary md-8">{{ p.quantidade }}</span></h5>
                     </div>
                 </div>
-                
-                <img 
-                    class="card-img-top espaco-interno img-fluid rounded mx-auto d-block" 
-                    src="../static/img/{{ p.imagem }}"
-                    alt="{{ p.descricao }}"
-                >
-                
+
+                <img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block"
+                    src="../static/img/{{ p.imagem }}" alt="{{ p.descricao }}">
+
                 <div class="dropdown-divider"></div>
-                
+
                 <div class="card-body">
                     <h5 class="card-title centralizar-titulo">{{ p.descricao }}</h5>
-                    
+
                     <div class="dropdown-divider"></div>
-                    
-                    <p class="card-text">R$ {{ p.preco }}</p>
+
+                    <h3 class="card-text">R$ {{ p.preco }}</h3>
 
                     {% if user.tipo == 2 or not user %}
                     <a href="#" class="btn btn-danger btn-block">Adicionar ao Carrinho</a>
@@ -39,7 +33,6 @@
         </div>
         {% endfor %}
     </div>
-    {% endfor %}
     {% endif %}
 </div>
 {% endblock %}

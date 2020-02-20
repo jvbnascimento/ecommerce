@@ -113,6 +113,7 @@ def cadastrar_usuario():
 
 
 @app.route('/user/gerenciar_estoque', methods=['GET', 'POST'])
+@login_required
 def gerenciar_estoque():
     if current_user.is_authenticated and current_user.tipo == 1:
         current_url = request.url.split(current_port)
