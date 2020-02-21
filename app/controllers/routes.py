@@ -9,7 +9,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
-from app.controllers.forms import LoginForm, RegistrationForm, CadastroProdutoForm
+from app.controllers.forms import LoginForm, RegistrationForm, CadastroProdutoForm, EditarDadosProdutoForm
 
 from app.models.usuario import Usuario
 from app.models.produto import Produto
@@ -18,6 +18,7 @@ from app.models.categoria import Categoria
 dirpath = os.getcwd()
 UPLOAD_FOLDER = dirpath + '/app/static/img/'
 current_port = '8080/'
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -120,6 +121,7 @@ def gerenciar_estoque():
         current_url = current_url[1]
 
         form = CadastroProdutoForm()
+
         lista_produtos = Produto.query.all()
 
         if form.validate_on_submit():
@@ -133,7 +135,8 @@ def gerenciar_estoque():
 
             c = Categoria(nome='Teste')
 
-            produto = Produto(descricao=form.descricao.data, quantidade=form.quantidade.data, preco=form.preco.data, imagem=(nome_imagem), categorias_produto=[c])
+            produto = Produto(descricao=form.descricao.data, quantidade=form.quantidade.data,
+                              preco=form.preco.data, imagem=(nome_imagem), categorias_produto=[c])
 
             db.session.add(produto)
             db.session.commit()
@@ -144,3 +147,40 @@ def gerenciar_estoque():
         return render_template('gerenciar_estoque.html', title='Ecommerce - Estoque', url=current_url, user=current_user, form=form, produtos=lista_produtos)
     flash('Você não é um administrador do sistema.')
     return redirect(url_for('index_user'))
+
+@app.route('/user/gerenciar_estoque/editar_produto/<id>', methods=['GET', 'POST'])
+@login_required
+def editar_produto(id):
+    if current_user.is_authenticated and current_user.tipo == 1:
+        current_url = request.url.split(current_port)
+        current_url = current_url[1]
+
+        produto = Produto.query.filter_by(id = id).first_or_404()
+
+        form = EditarDadosProdutoForm()
+
+        if form.validate_on_submit():
+            imagem_upada = ""
+
+            if request.files and request.files['imagem'].filename != "":
+                imagem_upada = request.files['imagem']
+                nome_imagem = secure_filename(imagem_upada.filename)
+
+                imagem_upada.save(os.path.join(UPLOAD_FOLDER, nome_imagem))
+
+            c = Categoria(nome='Teste')
+            
+            produto.descricao = form.descricao.data
+            produto.quantidade = form.quantidade.data
+            produto.preco = form.preco.data
+
+            db.session.add(produto)
+            db.session.commit()
+            flash('As alterações foram salvadas com sucesso.')
+            return redirect(url_for('editar_produto', id = produto.id))
+        elif request.method == 'GET':
+            form.descricao.data = produto.descricao
+            form.quantidade.data = produto.quantidade
+            form.preco.data = produto.preco
+
+    return render_template('editar_produto.html', title='Ecommerce - Estoque', url=current_url, user=current_user, form = form, produto = produto)
