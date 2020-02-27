@@ -13,24 +13,36 @@
                     </div>
                 </div>
 
-                <img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block"
+                <img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block w-30"
                     src="../static/img/{{ p.imagem }}" alt="{{ p.descricao }}">
 
                 <div class="dropdown-divider"></div>
 
-                <div class="card-body">
-                    <h5 class="card-title centralizar-titulo">{{ p.descricao }}</h5>
+                <h5 class="centralizar-titulo">{{ p.descricao }}</h5>
 
-                    <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div>
 
-                    <br />
-                    <h3 class="card-text text-center">{{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }}</h3>
+                <h3 class="card-text text-center">
+                    {{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }}
+                </h3>
 
-                    {% if user.tipo == 2 or not user %}
-                    <br />
-                    <a href="#" class="btn btn-danger btn-block">Adicionar ao Carrinho</a>
-                    {% endif %}
+                <div class="dropdown-divider"></div>
+
+                <div class="nav espaco-interno justify-content-center">
+                    {% for cp in p.categorias_produto %}
+                    <span class="badge-pill bg-warning espaco-interno"> {{ cp.nome }}</span>
+                    {% endfor %}
                 </div>
+                
+                {% if not url.startswith('user') %}
+                <div class="dropdown-divider"></div>
+                {% endif %}
+
+                {% if user.tipo == 2 or not user %}
+                <div class="col">
+                    <a href="#" class="btn btn-danger btn-block espaco-abaixo-10">Adicionar ao Carrinho</a>
+                </div>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
