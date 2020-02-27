@@ -26,38 +26,54 @@
 									</div>
 								</div>
 
-								<img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block w-30" src="../static/img/{{ p.imagem }}"
-									alt="{{ p.descricao }}">
+								<img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block w-30"
+									src="../static/img/{{ p.imagem }}" alt="{{ p.descricao }}">
 
 								<div class="dropdown-divider"></div>
 
-								<div class="card-body">
-									<h5 class="card-title centralizar-titulo espaco-abaixo">{{ p.descricao }}</h5>
+								<h5 class="centralizar-titulo">{{ p.descricao }}</h5>
 
-									<div class="dropdown-divider"></div>
-									
-									<br />
-									<h3 class="card-text text-center">{{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }}</h3>
-									<br />
+								<div class="dropdown-divider"></div>
 
-									<nav class="navbar navbar-expand-md bg-faded justify-content-center">
-										<ul class="navbar-nav w-100 justify-content-center">
-											<li class="nav-item bg-success espaco-externo borda-redonda">
-												<a class="nav-link" href="{{ url_for('editar_produto', id = p.id) }}">
-													<img src="../static/img/outline_edit_black_24dp.png"
-														class="align-self-center img-fluid rounded mx-auto d-block" alt="Editar Produto" title="Editar Produto" />
-												</a>
-											</li>
+								<h3 class="card-text text-center">
+									{{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }}
+								</h3>
 
-											<li class="nav-item bg-success espaco-externo borda-redonda">
-												<a class="nav-link" href="{{ url_for('deletar_produto', id = p.id) }}">
-													<img src="../static/img/outline_delete_black_24dp.png"
-														class="align-self-center img-fluid rounded mx-auto d-block" alt="Deletar Produto" title="Deletar Produto" />
-												</a>
-											</li>
-										</ul>
-									</nav>
+								<div class="dropdown-divider"></div>
+
+								<div class="nav espaco-interno justify-content-center">
+									{% for cp in p.categorias_produto %}
+									<span class="badge-pill bg-warning espaco-interno"> {{ cp.nome }}
+										<button type="button" class="badge badge-light bg-light">
+											X 
+										</button>
+									</span>
+									{% endfor %}
 								</div>
+
+								<div class="dropdown-divider"></div>
+
+								<nav class="navbar navbar-expand-md bg-faded justify-content-center">
+									<ul class="navbar-nav w-100 justify-content-center">
+										<li class="nav-item">
+											<a class="btn btn-outline-success espaco-externo icone-borda-redonda espaco-interno"
+												href="{{ url_for('editar_produto', id = p.id) }}">
+												<img src="../static/img/outline_edit_black_18dp.png"
+													class="align-self-center img-fluid rounded mx-auto d-block"
+													alt="Editar Produto" title="Editar Produto" />
+											</a>
+										</li>
+
+										<li class="nav-item">
+											<a class="btn btn-outline-success espaco-externo icone-borda-redonda espaco-interno"
+												href="{{ url_for('deletar_produto', id = p.id) }}">
+												<img src="../static/img/outline_delete_black_18dp.png"
+													class="align-self-center img-fluid rounded mx-auto d-block"
+													alt="Deletar Produto" title="Deletar Produto" />
+											</a>
+										</li>
+									</ul>
+								</nav>
 							</div>
 						</div>
 						{% endfor %}

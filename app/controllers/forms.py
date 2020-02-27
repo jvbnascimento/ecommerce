@@ -39,7 +39,7 @@ class CadastroProdutoForm(FlaskForm):
 class EditarDadosProdutoForm(FlaskForm):
     descricao = StringField('Nome Produto', validators=[DataRequired()])
     quantidade = StringField('Quantidade', validators=[DataRequired()])
-    preco = StringField('R$ Preço', validators=[DataRequired()])
+    preco = StringField('Preço', validators=[DataRequired()])
     editarDadosProduto = SubmitField('Salvar Alterações')
 
 

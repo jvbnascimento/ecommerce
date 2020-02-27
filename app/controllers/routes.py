@@ -32,7 +32,7 @@ def index():
     current_url = request.url.split(current_port)
     current_url = current_url[1]
 
-    lista_produtos = Produto.query.all()
+    lista_produtos = Produto.query.order_by('id').all()
 
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email=form.email.data).first()
@@ -57,7 +57,7 @@ def index_user():
         current_url = request.url.split(current_port)
         current_url = current_url[1]
 
-        lista_produtos = Produto.query.all()
+        lista_produtos = Produto.query.order_by('id').all()
 
         return render_template('index.html', title='Ecommerce - Página Inicial - ' + current_user.nome, user=current_user, url=current_url, produtos=lista_produtos)
     return redirect(url_for('index'))
@@ -122,7 +122,7 @@ def gerenciar_estoque():
 
         form = CadastroProdutoForm()
 
-        lista_produtos = Produto.query.all()
+        lista_produtos = Produto.query.order_by('id').all()
 
         if form.validate_on_submit():
             if not request.files:
@@ -143,6 +143,8 @@ def gerenciar_estoque():
 
             flash('Parabéns, seu produto foi cadastrado com sucesso!')
             return redirect(url_for('index_user'))
+        
+        # print (lista_produtos[0].categorias_produto)
 
         return render_template('gerenciar_estoque.html', title='Ecommerce - Estoque', url=current_url, user=current_user, form=form, produtos=lista_produtos)
     flash('Você não é um administrador do sistema.')
