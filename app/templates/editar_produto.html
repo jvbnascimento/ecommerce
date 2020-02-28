@@ -9,6 +9,7 @@
                     <h2 class="centralizar-titulo">Editar Informações do Produto {{ produto.id }}</h2>
                     <form action="" method="POST" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
+                        <input type="hidden" name="categorias_selecionadas" value="" />
                         <div class="col espaco-abaixo">
                             <img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block"
                                 src="/static/img/{{ produto.imagem }}" alt="{{ produto.descricao }}">
@@ -57,7 +58,35 @@
                                 Imagem do Produto
                             </label>
                             <input type="file" class="form-control-file" name="imagem" id="exampleInputImagem1">
-                        </div><br>
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+
+                        <h4 class="text-center">Categorias do Produto</h4>
+
+                        <div class="nav espaco-interno justify-content-center espaco-abaixo-10">
+                            {% for cp in produto.categorias_produto %}
+                            <span class="badge-pill bg-warning espaco-interno"> {{ cp.nome }}
+                                <button type="button" name="remover" class="badge badge-light bg-light">
+                                    X 
+                                </button>
+                            </span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="dropdown-divider"></div>
+
+                        <h4 class="text-center">Todas as Categorias</h4>
+
+                        <div class="nav espaco-interno justify-content-center espaco-abaixo-10">
+                            {% for c in categorias %}
+                            <span class="badge-pill bg-warning espaco-interno espaco-externo"> {{ c.nome }}
+                                <button type="button" name="adicionar" class="badge badge-light bg-light">
+                                    V
+                                </button>
+                            </span>
+                            {% endfor %}
+                        </div>
 
                         <div class="row text-center">
                             <div class="col">

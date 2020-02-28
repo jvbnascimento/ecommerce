@@ -43,11 +43,7 @@
 
 								<div class="nav espaco-interno justify-content-center">
 									{% for cp in p.categorias_produto %}
-									<span class="badge-pill bg-warning espaco-interno"> {{ cp.nome }}
-										<button type="button" class="badge badge-light bg-light">
-											X 
-										</button>
-									</span>
+									<span class="badge-pill bg-warning espaco-interno"> {{ cp.nome }}</span>
 									{% endfor %}
 								</div>
 
@@ -108,6 +104,7 @@
 							<h2 class="centralizar-titulo">Cadastrar novo produto</h2>
 							<form action="" method="POST" enctype="multipart/form-data">
 								{{ form.hidden_tag() }}
+								<input type="hidden" name="categorias_selecionadas" value="" />
 								<div class="form-group">
 									<label for="exampleInputDescricao1">
 										{{ form.descricao.label }}
@@ -151,7 +148,21 @@
 										Imagem do Produto
 									</label>
 									<input type="file" class="form-control-file" name="imagem" id="exampleInputImagem1">
-								</div><br>
+								</div>
+
+								<div class="dropdown-divider"></div>
+
+								<h4 class="text-center">Todas as Categorias</h4>
+
+								<div class="nav espaco-interno justify-content-center espaco-abaixo-10">
+									{% for c in categorias %}
+									<span class="badge-pill bg-warning espaco-interno espaco-externo"> {{ c.nome }}
+										<button type="button" name="adicionar" class="badge badge-light bg-light">
+											V
+										</button>
+									</span>
+									{% endfor %}
+								</div>
 
 								<button type="submit" name="cadastrarProduto" class="btn btn-dark btn-block">
 									Cadastrar Produto
