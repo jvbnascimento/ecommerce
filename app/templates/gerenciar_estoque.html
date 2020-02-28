@@ -1,5 +1,10 @@
 {% extends "modelo_html.html" %}
 
+{% block script_adicional %}
+<script src="../static/js/gerenciar_estoque/adicionar_produto/adicionar_categoria.js"></script>
+<script src="../static/js/gerenciar_estoque/adicionar_produto/remover_categoria.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="accordion" id="accordionExample">
 	<div class="card bg-success sem-border-radius">
@@ -152,14 +157,15 @@
 
 								<div class="dropdown-divider"></div>
 
-								<h4 class="text-center">Todas as Categorias</h4>
+								<h4 id="todas-categorias" class="text-center">Todas as Categorias</h4>
 
-								<div class="nav espaco-interno justify-content-center espaco-abaixo-10">
+								<div id="menu-adicionar-categoria" class="nav espaco-interno justify-content-center espaco-abaixo-10">
 									{% for c in categorias %}
 									<span class="badge-pill bg-warning espaco-interno espaco-externo"> {{ c.nome }}
 										<button type="button" name="adicionar" class="badge badge-light bg-light">
 											V
 										</button>
+										<input type="hidden" name="{{ c.nome }}" value="{{ c.id }}" />
 									</span>
 									{% endfor %}
 								</div>
