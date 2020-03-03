@@ -48,7 +48,7 @@
 
 								<div class="nav espaco-interno justify-content-center">
 									{% for cp in p.categorias_produto %}
-									<span class="badge-pill bg-warning espaco-interno"> {{ cp.nome }}</span>
+									<span class="badge-pill bg-warning espaco-interno espaco-externo"> {{ cp.nome }}</span>
 									{% endfor %}
 								</div>
 
@@ -161,8 +161,8 @@
 
 								<div id="menu-adicionar-categoria" class="nav espaco-interno justify-content-center espaco-abaixo-10">
 									{% for c in categorias %}
-									<span class="badge-pill bg-warning espaco-interno espaco-externo"> {{ c.nome }}
-										<button type="button" name="adicionar" class="badge badge-light bg-light">
+									<span class="badge-pill bg-warning espaco-interno espaco-externo espaco-externo-vertical-10"> {{ c.nome }}
+										<button type="button" id="botao_{{ c.id }}" name="adicionar" class="badge badge-light bg-light">
 											V
 										</button>
 										<input type="hidden" name="{{ c.nome }}" value="{{ c.id }}" />

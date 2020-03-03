@@ -37,15 +37,26 @@ def gerenciar_estoque():
 
             imagem_upada.save(os.path.join(UPLOAD_FOLDER, nome_imagem))
 
-            c = Categoria(nome='Teste')
+            if not request.form["categorias_selecionadas"]:
+                redirect(url_for('gerenciar_estoque'))
+            
+            lista_categorias_temp = request.form["categorias_selecionadas"].split(';')
+
+            lista_categorias_temp.pop(len(lista_categorias_temp)-1)
 
             produto = Produto(
                 descricao = form.descricao.data, 
                 quantidade = form.quantidade.data,
                 preco = form.preco.data, 
-                imagem = (nome_imagem), 
-                categorias_produto = [c]
+                imagem = (nome_imagem)
             )
+
+            for c in lista_categorias_temp:
+                item = c.split("_")
+
+                categoria = Categoria.query.filter_by(id = item[1]).first_or_404()
+
+                produto.categorias_produto.append(categoria)
 
             db.session.add(produto)
             db.session.commit()
