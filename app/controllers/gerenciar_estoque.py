@@ -25,7 +25,7 @@ def gerenciar_estoque():
 
         form = CadastroProdutoForm()
 
-        lista_produtos = Produto.query.order_by('id').all()
+        lista_produtos = Produto.query.order_by('descricao').all()
         categorias = Categoria.query.order_by('nome').all()
 
         if form.validate_on_submit():

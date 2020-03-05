@@ -38,6 +38,8 @@ def editar_produto(id):
 
                 imagem_upada.save(os.path.join(UPLOAD_FOLDER, nome_imagem))
 
+                produto.imagem = nome_imagem
+
             if not request.form["categorias_selecionadas"]:
                 redirect(url_for('gerenciar_estoque'))
             

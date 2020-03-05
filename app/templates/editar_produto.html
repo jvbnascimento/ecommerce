@@ -1,8 +1,12 @@
+{% block link_adicional %}
+<link rel="stylesheet" type="text/css" href="../../../static/css/modelo.css">
+{% endblock %}
+
 {% extends "modelo_html.html" %}
 
 {% block script_adicional %}
-<script src="../../../static/js/gerenciar_estoque/adicionar_produto/adicionar_categoria.js"></script>
-<script src="../../../static/js/gerenciar_estoque/adicionar_produto/remover_categoria.js"></script>
+<script src="../../../static/js/gerenciar_categorias/adicionar_categoria.js"></script>
+<script src="../../../static/js/gerenciar_categorias/remover_categoria.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -10,13 +14,13 @@
     <div class="card-body fundo-branco">
         <div class="container"><br>
             <div class="row align-items-center justify-content-center">
-                <div class="col-md-4 bg-success espaco-interno fonte-preta borda-preta borda-redonda">
-                    <h2 class="centralizar-titulo">Editar Informações do Produto {{ produto.id }}</h2>
+                <div class="col-md-4 bg-success espaco-interno-10 fonte-preta borda-solid borda-preta borda-radius-10">
+                    <h2 class="centralizar-texto">Editar Informações do Produto {{ produto.id }}</h2>
                     <form action="" method="POST" enctype="multipart/form-data">
                         {{ form.hidden_tag() }}
                         <input type="hidden" name="categorias_selecionadas" value="" />
-                        <div class="col espaco-abaixo">
-                            <img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block"
+                        <div class="col espaco-abaixo-10">
+                            <img class="card-img-top espaco-interno-10 img-fluid rounded mx-auto d-block"
                                 src="/static/img/{{ produto.imagem }}" alt="{{ produto.descricao }}">
                         </div>
                         <div class="form-group">
@@ -69,9 +73,9 @@
 
                         <h4 id="categorias-selecionadas" class="text-center">Categorias do Produto</h4>
 
-                        <div id="menu-categorias-selecionadas" class="nav espaco-interno justify-content-center espaco-abaixo-10">
+                        <div id="menu-categorias-selecionadas" class="nav justify-content-center espaco-interno-10 espaco-abaixo-10">
                             {% for cp in produto.categorias_produto %}
-                            <span id="span_{{ cp.id }}" class="badge-pill bg-warning espaco-interno espaco-externo espaco-externo-vertical-10"> {{ cp.nome }}
+                            <span id="span_{{ cp.id }}" class="badge-pill bg-warning espaco-interno-10 espaco-externo-horizontal-5 espaco-externo-vertical-10"> {{ cp.nome }}
                                 <button id="botao_{{ cp.id }}" type="button" name="remover" class="badge badge-light bg-light">
                                     X 
                                 </button>
@@ -82,9 +86,9 @@
 
                         <h4 id="todas-categorias" class="text-center">Todas as Categorias</h4>
 
-                        <div id="menu-adicionar-categoria" class="nav espaco-interno justify-content-center espaco-abaixo-10">
+                        <div id="menu-adicionar-categoria" class="nav justify-content-center espaco-interno-10 espaco-abaixo-10">
                             {% for c in categorias %}
-                            <span class="badge-pill bg-warning espaco-interno espaco-externo espaco-externo-vertical-10"> {{ c.nome }}
+                            <span class="badge-pill bg-warning espaco-interno-10 espaco-externo-horizontal-5 espaco-externo-vertical-10"> {{ c.nome }}
                                 <button type="button" id="botao_{{ c.id }}" name="adicionar" class="badge badge-light bg-light">
                                     V
                                 </button>

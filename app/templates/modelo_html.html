@@ -11,6 +11,7 @@
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 		crossorigin="anonymous"
 	/>
+	{% block link_adicional %}{% endblock %}
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
@@ -21,76 +22,6 @@
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<style>
-		.teste {
-			margin-top: 10px;
-			margin-bottom: 10px;
-		}
-
-		.espaco-interno {
-			padding: 10px;
-		}
-
-		.centralizar-titulo {
-			text-align: center;
-		}
-
-		.fundo-branco {
-			background-color: #fff;
-		}
-
-		.sem-border-radius {
-			border-radius: 0;
-			color: #fff;
-		}
-
-		.fonte-preta {
-			color: #000;
-		}
-
-		.border-redor {
-			border: 1px solid #ccc;
-			border-radius: 10px;
-		}
-
-		.borda-preta {
-			border: #000 1px solid;
-		}
-
-		.borda-redonda {
-			border-radius: 20px;
-		}
-
-		.espaco-externo {
-			margin-left: 5px;
-			margin-right: 5px;
-		}
-
-		.espaco-externo-vertical-10 {
-			margin-top: 10px;
-			margin-bottom: 10px;
-		}
-
-		.redimensionar-imagem {
-			width: 100%;
-		}
-
-		.espaco-abaixo1 {
-			margin-bottom: 10px;
-		}
-
-		.espaco-abaixo-10 {
-			margin-bottom: 10px;
-		}
-		
-		.espaco-abaixo {
-			margin-bottom: 30px;
-		}
-
-		.icone-borda-redonda {
-			border-radius: 30px;
-		}
-	</style>
 </head>
 
 <body>
@@ -113,9 +44,9 @@
 						Categorias
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Celulares</a>
-						<a class="dropdown-item" href="#">Informática</a>
-						<a class="dropdown-item" href="#">Jogos</a>
+						{% for c in categorias %}
+						<a class="dropdown-item" href="#">{{ c.nome }}</a>
+						{% endfor %}
 					</div>
 				</li>
 				<li class="nav-item">
@@ -170,12 +101,13 @@
 					{% elif user.tipo == 2 %}
 					<a class="dropdown-item" href="#">Minhas compras</a>
 					<a class="dropdown-item" href="#">Meus dados</a>
+					<a class="dropdown-item" href="{{ url_for('logout') }}">Sair</a>
 					{% elif user.tipo == 1 %}
 					<a class="dropdown-item" href="{{ url_for('gerenciar_estoque') }}">Gerenciar Estoque</a>
 					<a class="dropdown-item" href="#">Gerenciar Cadastros</a>
 					<a class="dropdown-item" href="#">Relatórios</a>
-					{% endif %}
 					<a class="dropdown-item" href="{{ url_for('logout') }}">Sair</a>
+					{% endif %}
 				</div>
 			</div>
 			{% endif %}
@@ -199,7 +131,7 @@
 
 	{% block content %}{% endblock %}
 
-	<div class="card text-center bg-dark sem-border-radius">
+	<div class="card text-center bg-dark sem-borda-radius fonte-branca">
 		<div class="card-body">
 			Todos os direitos reservados à joao.vitoor.batista@gmail.com
 		</div>

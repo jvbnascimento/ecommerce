@@ -1,10 +1,14 @@
 {% extends "modelo_html.html" %}
 
+{% block link_adicional %}
+<link rel="stylesheet" type="text/css" href="../static/css/modelo.css">
+{% endblock %}
+
 {% block content %}
 <div class="container"><br>
     <div class="row align-items-center justify-content-center">
         <div class="col-md-4 border-redor">
-            <h1 class="centralizar-titulo">Cadastre-se</h1>
+            <h1 class="centralizar-texto">Cadastre-se</h1>
             <form action="" method="POST" novalidate>
                 {{ form.hidden_tag() }}
                 <div class="form-group">

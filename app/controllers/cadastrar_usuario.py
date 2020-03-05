@@ -7,6 +7,7 @@ from flask_login import current_user
 from app.controllers.forms import RegistrationForm
 
 from app.models.usuario import Usuario
+from app.models.categoria import Categoria
 
 current_port = '8080/'
 
@@ -18,6 +19,8 @@ def cadastrar_usuario():
     form = RegistrationForm()
     current_url = request.url.split(current_port)
     current_url = current_url[1]
+
+    categorias = Categoria.query.order_by('nome').all()
 
     if form.validate_on_submit():
         usuario = Usuario(nome=form.nome.data, email=form.email.data, tipo=2)
@@ -32,5 +35,6 @@ def cadastrar_usuario():
         'cadastro_usuario.html', 
         title = 'Ecommerce - Cadastre-se', 
         form = form, 
-        url = current_url
+        url = current_url,
+        categorias = categorias
     )

@@ -1,15 +1,20 @@
 {% extends "modelo_html.html" %}
 
+{% block link_adicional %}
+<link rel="stylesheet" type="text/css" href="../static/css/modelo.css">
+{% endblock %}
+
 {% block script_adicional %}
-<script src="../static/js/gerenciar_estoque/adicionar_produto/adicionar_categoria.js"></script>
-<script src="../static/js/gerenciar_estoque/adicionar_produto/remover_categoria.js"></script>
+<script src="../static/js/gerenciar_categorias/adicionar_categoria.js"></script>
+<script src="../static/js/gerenciar_categorias/remover_categoria.js"></script>
+<script src="../static/js/padronizar_descricao/padronizar_descricao.js"></script>
 {% endblock %}
 
 {% block content %}
 <div class="accordion" id="accordionExample">
 	<div class="card bg-success sem-border-radius">
 		<div class="card-header" id="headingOne">
-			<button class="btn btn-dark bg-success espaco-externo" data-toggle="collapse" data-target="#lista-produtos"
+			<button class="btn btn-dark bg-success espaco-externo-5" data-toggle="collapse" data-target="#lista-produtos"
 				aria-expanded="true" aria-controls="lista-produtos">
 				<img src="../static/img/outline_list_black_24dp.png" class="align-self-center" alt="Listar Produtos"
 					title="Listar Produtos" />
@@ -23,7 +28,7 @@
 					{% if produtos != None and produtos|length != 0 %}
 					<div class="row align-items-center justify-content-center">
 						{% for p in produtos %}
-						<div class="col-3 teste">
+						<div class="col-3 espaco-externo-vertical-10">
 							<div class="card fonte-preta">
 								<div class="row">
 									<div class="col text-right">
@@ -31,24 +36,26 @@
 									</div>
 								</div>
 
-								<img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block w-30"
+								<img class="card-img-top espaco-interno-10 img-fluid rounded mx-auto d-block w-30"
 									src="../static/img/{{ p.imagem }}" alt="{{ p.descricao }}">
 
 								<div class="dropdown-divider"></div>
 
-								<h5 class="centralizar-titulo">{{ p.descricao }}</h5>
+								<div class="nav justify-content-center align-items-center espaco-interno-10 espaco-abaixo-10">
+									<h5 class="text-center">{{ p.descricao }}</h5>
+								</div>
 
 								<div class="dropdown-divider"></div>
 
-								<h3 class="card-text text-center">
+								<h3 class="card-text text-center espaco-interno-10">
 									{{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }}
 								</h3>
 
 								<div class="dropdown-divider"></div>
 
-								<div class="nav espaco-interno justify-content-center">
+								<div class="nav espaco-interno-10 justify-content-center">
 									{% for cp in p.categorias_produto %}
-									<span class="badge-pill bg-warning espaco-interno espaco-externo"> {{ cp.nome }}</span>
+									<span class="badge-pill bg-warning espaco-interno-10 espaco-externo-5"> {{ cp.nome }}</span>
 									{% endfor %}
 								</div>
 
@@ -57,7 +64,7 @@
 								<nav class="navbar navbar-expand-md bg-faded justify-content-center">
 									<ul class="navbar-nav w-100 justify-content-center">
 										<li class="nav-item">
-											<a class="btn btn-outline-success espaco-externo icone-borda-redonda espaco-interno"
+											<a class="btn btn-outline-success espaco-externo-horizontal-5 borda-radius-30 espaco-interno-10"
 												href="{{ url_for('editar_produto', id = p.id) }}">
 												<img src="../static/img/outline_edit_black_18dp.png"
 													class="align-self-center img-fluid rounded mx-auto d-block"
@@ -66,7 +73,7 @@
 										</li>
 
 										<li class="nav-item">
-											<a class="btn btn-outline-success espaco-externo icone-borda-redonda espaco-interno"
+											<a class="btn btn-outline-success espaco-externo-horizontal-5 borda-radius-30 espaco-interno-10"
 												href="{{ url_for('deletar_produto', id = p.id) }}">
 												<img src="../static/img/outline_delete_black_18dp.png"
 													class="align-self-center img-fluid rounded mx-auto d-block"
@@ -81,8 +88,8 @@
 					</div>
 					{% elif produtos|length == 0 %}
 					<div class="row">
-						<div class="col teste">
-							<h2 class="centralizar-titulo fonte-preta">Ainda não há produtos cadastrados.</h2>
+						<div class="col espaco-externo-vertical-10">
+							<h2 class="centralizar-texto fonte-preta">Ainda não há produtos cadastrados.</h2>
 						</div>
 					</div>
 					{% endif %}
@@ -93,7 +100,7 @@
 
 	<div class="card bg-success sem-border-radius">
 		<div class="card-header" id="headingTwo">
-			<button class="btn btn-dark bg-success collapsed espaco-externo" data-toggle="collapse"
+			<button class="btn btn-dark bg-success collapsed espaco-externo-5" data-toggle="collapse"
 				data-target="#form-adicionar-produto" aria-expanded="false" aria-controls="form-adicionar-produto">
 				<img src="../static/img/outline_add_black_24dp.png" class="align-self-center" alt="Adicionar Produto"
 					title="Adicionar Produto" />
@@ -105,8 +112,8 @@
 			<div class="card-body fundo-branco">
 				<div class="container"><br>
 					<div class="row align-items-center justify-content-center">
-						<div class="col-md-4 bg-success espaco-interno fonte-preta borda-preta borda-redonda">
-							<h2 class="centralizar-titulo">Cadastrar novo produto</h2>
+						<div class="col-md-4 bg-success espaco-interno-10 fonte-preta borda-solid borda-preta borda-radius-10">
+							<h2 class="centralizar-texto">Cadastrar novo produto</h2>
 							<form action="" method="POST" enctype="multipart/form-data">
 								{{ form.hidden_tag() }}
 								<input type="hidden" name="categorias_selecionadas" value="" />
@@ -159,9 +166,9 @@
 
 								<h4 id="todas-categorias" class="text-center">Todas as Categorias</h4>
 
-								<div id="menu-adicionar-categoria" class="nav espaco-interno justify-content-center espaco-abaixo-10">
+								<div id="menu-adicionar-categoria" class="nav espaco-interno-10 justify-content-center espaco-abaixo-10">
 									{% for c in categorias %}
-									<span class="badge-pill bg-warning espaco-interno espaco-externo espaco-externo-vertical-10"> {{ c.nome }}
+									<span class="badge-pill bg-warning espaco-interno-10 espaco-externo-horizontal-5 espaco-externo-vertical-10"> {{ c.nome }}
 										<button type="button" id="botao_{{ c.id }}" name="adicionar" class="badge badge-light bg-light">
 											V
 										</button>

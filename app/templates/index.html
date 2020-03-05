@@ -1,4 +1,12 @@
+{% block link_adicional %}
+<link rel="stylesheet" type="text/css" href="../static/css/modelo.css">
+{% endblock %}
+
 {% extends "modelo_html.html" %}
+
+{% block script_adicional %}
+<script src="../static/js/padronizar_descricao/padronizar_descricao.js"></script>
+{% endblock %}
 
 {% block content %}
 <!-- ====================================================================================================== -->
@@ -8,9 +16,9 @@
 		</form> -->
 <div class="container">
     {% if produtos != None and produtos|length != 0 %}
-    <div class="row align-items-center justify-content-center">
+    <div id="lista-produtos" class="row align-items-center justify-content-center">
         {% for p in produtos %}
-        <div class="col-3 teste">
+        <div class="col-3 espaco-externo-vertical-10">
             <div class="card">
                 <div class="row">
                     <div class="col text-right">
@@ -18,24 +26,26 @@
                     </div>
                 </div>
 
-                <img class="card-img-top espaco-interno img-fluid rounded mx-auto d-block w-30"
+                <img class="card-img-top espaco-interno-10 img-fluid rounded mx-auto d-block w-30"
                     src="../static/img/{{ p.imagem }}" alt="{{ p.descricao }}">
 
                 <div class="dropdown-divider"></div>
 
-                <h5 class="centralizar-titulo">{{ p.descricao }}</h5>
+                <div class="nav justify-content-center align-items-center espaco-interno-10 espaco-abaixo-10">
+                    <h5 class="text-center">{{ p.descricao }}</h5>
+                </div>
 
                 <div class="dropdown-divider"></div>
 
-                <h3 class="card-text text-center">
+                <h3 class="card-text text-center espaco-interno-10">
                     {{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }}
                 </h3>
 
                 <div class="dropdown-divider"></div>
 
-                <div class="nav espaco-interno justify-content-center">
+                <div class="nav espaco-interno-10 justify-content-center">
                     {% for cp in p.categorias_produto %}
-                    <span class="badge-pill bg-warning espaco-interno espaco-externo espaco-abaixo-10"> {{ cp.nome }}</span>
+                    <span class="badge-pill bg-warning espaco-interno-10 espaco-externo-5 espaco-abaixo-10"> {{ cp.nome }}</span>
                     {% endfor %}
                 </div>
                 

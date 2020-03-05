@@ -7,6 +7,7 @@ from werkzeug.urls import url_parse
 from app.controllers.forms import LoginForm
 from app.models.usuario import Usuario
 from app.models.produto import Produto
+from app.models.categoria import Categoria
 
 current_port = '8080/'
 
@@ -22,7 +23,8 @@ def index():
     current_url = request.url.split(current_port)
     current_url = current_url[1]
 
-    lista_produtos = Produto.query.order_by('id').all()
+    lista_produtos = Produto.query.order_by('descricao').all()
+    categorias = Categoria.query.order_by('nome').all()
 
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email=form.email.data).first()
@@ -38,4 +40,12 @@ def index():
             next_page = url_for('index')
         return redirect(next_page)
 
-    return render_template('index.html', title='Ecommerce - Página Inicial', user=usuario, form=form, url=current_url, produtos=lista_produtos)
+    return render_template(
+        'index.html', 
+        title ='Ecommerce - Página Inicial', 
+        user = usuario, 
+        form = form, 
+        url = current_url, 
+        produtos = lista_produtos, 
+        categorias = categorias
+    )

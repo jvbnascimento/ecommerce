@@ -1,0 +1,75 @@
+/* ESPACOS INTERNOS */
+.espaco-interno-10 {
+    padding: 10px;
+}
+
+/* ALINHAMENTO DE TEXTO */
+.centralizar-texto {
+    text-align: center;
+}
+
+/* CORES DE FUNDO  */
+.fundo-branco {
+    background-color: #fff;
+}
+
+/* CORES DA FONTE */
+.fonte-preta {
+    color: #000;
+}
+.fonte-branca {
+    color: #fff;
+}
+
+/* BORDAS */
+.borda-solid {
+    border: 1px solid;
+}
+.borda-radius-10 {
+    border-radius: 10px;
+}
+.borda-radius-20 {
+    border-radius: 20px;
+}
+.borda-radius-30 {
+    border-radius: 30px;
+}
+.sem-borda-radius {
+    border-radius: 0;
+}
+.borda-preta {
+    border-color: #000;
+}
+.borda-branca {
+    border-color: #fff;
+}
+
+/* ESPACOS EXTERNOS */
+.espaco-externo-vertical-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.espaco-externo-horizontal-5 {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.espaco-externo-horizontal-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.sem-espacos {
+    margin: 0;
+}
+
+/* IMAGEM  */
+.redimensionar-imagem {
+    width: 100%;
+}
+
+/* ESPACOS ABAIXO  */
+.espaco-abaixo-10 {
+    margin-bottom: 10px;
+}
+.espaco-abaixo-30 {
+    margin-bottom: 30px;
+}

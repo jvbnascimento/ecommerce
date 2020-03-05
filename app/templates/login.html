@@ -1,10 +1,14 @@
+{% block link_adicional %}
+<link rel="stylesheet" type="text/css" href="../static/css/modelo.css">
+{% endblock %}
+
 {% extends "modelo_html.html" %}
 
 {% block content %}
 <div class="container"><br>
     <div class="row align-items-center justify-content-center">
         <div class="col-md-4 border-redor">
-            <h1 class="centralizar-titulo">Acesse sua conta</h1>
+            <h1 class="centralizar-texto">Acesse sua conta</h1>
             <form action="" method="POST" novalidate>
                 {{ form.hidden_tag() }}
                 <div class="form-group">
