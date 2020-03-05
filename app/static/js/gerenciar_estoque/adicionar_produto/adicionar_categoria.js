@@ -1,11 +1,15 @@
 $(document).ready(function () {
+    if ($("#menu-adicionar-categoria").children().length == 0) {
+        $("#todas-categorias").remove();
+    }
+
     $("#menu-adicionar-categoria span button").each(function() {
         $(this).click($(this).attr("id"), adicionar_categoria);
     });
 });
 
 function adicionar_categoria(opcoes) {
-    let input_categorias_selecionadas = $("#form-adicionar-produto form input[name = 'categorias_selecionadas']");
+    let input_categorias_selecionadas = $("form input[name = 'categorias_selecionadas']");
 
     let input_categoria = $("#menu-adicionar-categoria span #" + opcoes.data).parent().children("input");
 

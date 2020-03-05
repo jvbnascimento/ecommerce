@@ -38,11 +38,23 @@ def editar_produto(id):
 
                 imagem_upada.save(os.path.join(UPLOAD_FOLDER, nome_imagem))
 
-            c = Categoria(nome='Teste')
+            if not request.form["categorias_selecionadas"]:
+                redirect(url_for('gerenciar_estoque'))
+            
+            lista_categorias_temp = request.form["categorias_selecionadas"].split(';')
+
+            lista_categorias_temp.pop(len(lista_categorias_temp)-1)
             
             produto.descricao = form.descricao.data
             produto.quantidade = form.quantidade.data
             produto.preco = form.preco.data
+
+            produto.categorias_produto.clear()
+
+            for c in lista_categorias_temp:
+                item = c.split("_")
+                categoria = Categoria.query.filter_by(id = item[1]).first_or_404()
+                produto.categorias_produto.append(categoria)
 
             db.session.add(produto)
             db.session.commit()

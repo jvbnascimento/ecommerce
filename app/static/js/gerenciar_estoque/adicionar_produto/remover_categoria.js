@@ -1,5 +1,26 @@
+$(document).ready(function () {
+    if ($("#menu-categorias-selecionadas").children().length > 0) {
+        $("#menu-categorias-selecionadas span").each(function() {
+            $("form input[name = 'categorias_selecionadas']").val(
+                $("form input[name = 'categorias_selecionadas']").val() +
+                $(this).children("input").attr("name") + "_" +
+                $(this).children("input").val() + ";"
+            );
+
+            $("#menu-adicionar-categoria #" + $(this).children("button").attr("id")).parent().remove();
+        });
+    }
+
+    if ($("#menu-adicionar-categoria").children().length == 0) {
+        $("#todas-categorias").remove();
+    }
+
+    $("#menu-categorias-selecionadas span button").each(function() {
+        $(this).click($(this).parent().children("input").val(), remover_categoria);
+    });
+});
 function remover_categoria(indice) {
-    let input_categorias_selecionadas = $("#form-adicionar-produto form input[name = 'categorias_selecionadas']");
+    let input_categorias_selecionadas = $("form input[name = 'categorias_selecionadas']");
 
     let menu_adicionar_categorias = $("#menu-adicionar-categoria");
     let span_categorias_selecionadas = $("#span_" + indice.data);

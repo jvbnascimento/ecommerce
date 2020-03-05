@@ -1,5 +1,10 @@
 {% extends "modelo_html.html" %}
 
+{% block script_adicional %}
+<script src="../../../static/js/gerenciar_estoque/adicionar_produto/adicionar_categoria.js"></script>
+<script src="../../../static/js/gerenciar_estoque/adicionar_produto/remover_categoria.js"></script>
+{% endblock %}
+
 {% block content %}
 <div id="form-editar-produto">
     <div class="card-body fundo-branco">
@@ -62,28 +67,28 @@
 
                         <div class="dropdown-divider"></div>
 
-                        <h4 class="text-center">Categorias do Produto</h4>
+                        <h4 id="categorias-selecionadas" class="text-center">Categorias do Produto</h4>
 
-                        <div class="nav espaco-interno justify-content-center espaco-abaixo-10">
+                        <div id="menu-categorias-selecionadas" class="nav espaco-interno justify-content-center espaco-abaixo-10">
                             {% for cp in produto.categorias_produto %}
-                            <span class="badge-pill bg-warning espaco-interno"> {{ cp.nome }}
-                                <button type="button" name="remover" class="badge badge-light bg-light">
+                            <span id="span_{{ cp.id }}" class="badge-pill bg-warning espaco-interno espaco-externo espaco-externo-vertical-10"> {{ cp.nome }}
+                                <button id="botao_{{ cp.id }}" type="button" name="remover" class="badge badge-light bg-light">
                                     X 
                                 </button>
+                                <input type="hidden" name="{{ cp.nome }}" value="{{ cp.id }}" />
                             </span>
                             {% endfor %}
                         </div>
 
-                        <div class="dropdown-divider"></div>
+                        <h4 id="todas-categorias" class="text-center">Todas as Categorias</h4>
 
-                        <h4 class="text-center">Todas as Categorias</h4>
-
-                        <div class="nav espaco-interno justify-content-center espaco-abaixo-10">
+                        <div id="menu-adicionar-categoria" class="nav espaco-interno justify-content-center espaco-abaixo-10">
                             {% for c in categorias %}
-                            <span class="badge-pill bg-warning espaco-interno espaco-externo"> {{ c.nome }}
-                                <button type="button" name="adicionar" class="badge badge-light bg-light">
+                            <span class="badge-pill bg-warning espaco-interno espaco-externo espaco-externo-vertical-10"> {{ c.nome }}
+                                <button type="button" id="botao_{{ c.id }}" name="adicionar" class="badge badge-light bg-light">
                                     V
                                 </button>
+                                <input type="hidden" name="{{ c.nome }}" value="{{ c.id }}" />
                             </span>
                             {% endfor %}
                         </div>
