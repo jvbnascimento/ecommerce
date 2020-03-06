@@ -1,4 +1,8 @@
 /* ESPACOS INTERNOS */
+.sem-espaco-interno-vertical {
+    padding-top: 0;
+    padding-bottom: 0;
+}
 .espaco-interno-10 {
     padding: 10px;
 }

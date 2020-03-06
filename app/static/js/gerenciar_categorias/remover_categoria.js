@@ -30,7 +30,7 @@ function remover_categoria(indice) {
         h4_todas_categorias.insertBefore(menu_adicionar_categorias);
     }
 
-    let span = $("<span class='badge-pill bg-warning espaco-interno espaco-externo'><span>");
+    let span = $("<span class='badge-pill bg-warning espaco-interno-10 espaco-externo-horizontal-10'><span>");
     let button = $("<button type='button' name='adicionar' class='badge badge-light bg-light'>V</button>");
     let input = $("<input type='hidden'>");
 
@@ -42,6 +42,7 @@ function remover_categoria(indice) {
     button.click("botao_" + indice.data, adicionar_categoria);
 
     span_categorias_selecionadas.children().remove();
+    span_categorias_selecionadas.text(span_categorias_selecionadas.text().replace(" ", ""));
 
     span.text(span_categorias_selecionadas.text());
     $(span).append(button);

@@ -110,6 +110,12 @@
 					{% endif %}
 				</div>
 			</div>
+			{% if user.tipo == 2 or not user %}
+			<button type="button" class="btn btn-primary sem-espaco-interno-vertical espaco-externo-horizontal-5">
+				<img src="../static/img/outline_shopping_cart_black_18dp.png"> <span class="badge badge-light">4</span>
+			  </button>
+			{% endif %}
+
 			{% endif %}
 		</div>
 	</nav>

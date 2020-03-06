@@ -30,7 +30,7 @@ function adicionar_categoria(opcoes) {
 
         if ($("#categorias-selecionadas").length == 0) {
             let h4 = $("<h4 id='categorias-selecionadas' class='text-center'>Categorias selecionadas</h4>");
-            let div = $("<div id='menu-categorias-selecionadas' class='nav espaco-interno justify-content-center espaco-abaixo-10'></div>");
+            let div = $("<div id='menu-categorias-selecionadas' class='nav justify-content-center espaco-interno-10 espaco-abaixo-10'></div>");
 
             $(h4).insertBefore($("#todas-categorias"));
             $(div).insertAfter($("#categorias-selecionadas"));
@@ -43,7 +43,7 @@ function adicionar_categoria(opcoes) {
                 if (element != "") {
                     let item = element.split("_");
 
-                    let span = $("<span class='badge-pill bg-warning espaco-interno espaco-externo'><span>");
+                    let span = $("<span class='badge-pill bg-warning espaco-interno-10 espaco-externo-horizontal-10'><span>");
                     let button = $("<button type='button' name='remover' class='badge badge-light bg-light'>X</button>");
                     let input = $("<input type='hidden'>")
 
