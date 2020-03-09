@@ -6,11 +6,12 @@
 
 {% block script_adicional %}
 <script src="../static/js/padronizar_descricao/padronizar_descricao.js"></script>
+<script src="../static/js/modificar_quantidades_produtos/modificar_quantidades_produtos.js"></script>
 {% endblock %}
 
 {% block content %}
 <!-- ====================================================================================================== -->
-		<!-- <form class="form-inline my-2 my-lg-0">
+<!-- <form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search" placeholder="Procurar" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0 mudanca-cor" type="submit">Procurar</button>
 		</form> -->
@@ -45,16 +46,21 @@
 
                 <div class="nav espaco-interno-10 justify-content-center">
                     {% for cp in p.categorias_produto %}
-                    <span class="badge-pill bg-warning espaco-interno-10 espaco-externo-5 espaco-abaixo-10"> {{ cp.nome }}</span>
+                    <span class="badge-pill bg-warning espaco-interno-10 espaco-externo-5 espaco-abaixo-10">
+                        {{ cp.nome }}</span>
                     {% endfor %}
                 </div>
-                
-                {% if not url.startswith('user') %}
-                <div class="dropdown-divider"></div>
-                {% endif %}
 
                 {% if user.tipo == 2 or not user %}
-                <div class="col">
+                <div class="dropdown-divider"></div>
+
+                <div class="btn-group espaco-interno-10" name="menu-quantidade-itens" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-danger">&#10094</button>
+                    <input type="text" class="col-6 sem-outline text-center" value="1">
+                    <button type="button" class="btn btn-outline-danger">&#10095</button>
+                </div>
+
+                <div class="col espaco-interno-10">
                     <a href="#" class="btn btn-danger btn-block espaco-abaixo-10">Adicionar ao Carrinho</a>
                 </div>
                 {% endif %}

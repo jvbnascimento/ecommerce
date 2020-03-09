@@ -11,6 +11,7 @@ class Usuario(UserMixin, db.Model):
 	nome = db.Column(db.String(64), index=True)
 	senha_hash = db.Column(db.String(128))
 	tipo = db.Column(db.Integer)
+	compras = db.relationship('Compra', backref = 'compra', lazy = True)
 	
 	def __repr__(self):
 		return '<Email {}>'.format(self.email)

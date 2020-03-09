@@ -1,3 +1,8 @@
+/* SEM OUTLINE */
+.sem-outline {
+    outline: 0;
+}
+
 /* ESPACOS INTERNOS */
 .sem-espaco-interno-vertical {
     padding-top: 0;
@@ -46,6 +51,9 @@
 }
 .borda-branca {
     border-color: #fff;
+}
+.borda-vermelha {
+    border-color: #dc3545;
 }
 
 /* ESPACOS EXTERNOS */
