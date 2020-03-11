@@ -1,8 +1,8 @@
-"""adicionando tabela Compra
+"""gerando tabelas
 
-Revision ID: dc65919bc96c
+Revision ID: 8a5a936387ec
 Revises: 
-Create Date: 2020-03-09 10:56:48.825276
+Create Date: 2020-03-10 13:07:46.046501
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'dc65919bc96c'
+revision = '8a5a936387ec'
 down_revision = None
 branch_labels = None
 depends_on = None

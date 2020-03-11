@@ -7,6 +7,7 @@
 {% block script_adicional %}
 <script src="../static/js/padronizar_descricao/padronizar_descricao.js"></script>
 <script src="../static/js/modificar_quantidades_produtos/modificar_quantidades_produtos.js"></script>
+<script src="../static/js/carrinho/adicionar_carrinho.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -61,7 +62,10 @@
                 </div>
 
                 <div class="col espaco-interno-10">
-                    <a href="#" class="btn btn-danger btn-block espaco-abaixo-10">Adicionar ao Carrinho</a>
+                    <form action="#">
+                        <input type="hidden" value="{{ p.id }}" />
+                        <button type="submit" class="btn btn-danger btn-block espaco-abaixo-10" name="botao-adicionar-carrinho">Adicionar ao Carrinho</button>
+                    </form>
                 </div>
                 {% endif %}
             </div>
