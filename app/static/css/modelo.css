@@ -43,6 +43,14 @@
 .borda-radius-30 {
     border-radius: 30px;
 }
+.borda-radius-top-bottom-direita-10 {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.sem-borda-radius-top-bottom-direita-10 {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
 .sem-borda-radius {
     border-radius: 0;
 }

@@ -4,8 +4,12 @@ function adicionar_carrinho(produto) {
         data: JSON.stringify(produto),  
         url: "http://localhost:8080/adicionar_carrinho/produto/",
         dataType: "json",
-        contentType: "application/json; charset=UTF-8"
-    });
+        contentType: "application/json; charset=UTF-8",
+
+        success: function(resposta) {
+            $("#icone-carrinho-compras").children("span").text(resposta);
+        }
+    })
 }
 
 $(document).ready(function() {

@@ -21,15 +21,9 @@ def adicionar_carrinho():
         dados_json = json.loads(produto_adicionar)
 
         if (cookie):
-            print ("cookie antigo: " + str(cookie))
-
             lista_cookie = cookie.split(";")
 
-            print ("transformando: " + str(lista_cookie))
-
             lista_cookie.pop(len(lista_cookie) - 1)
-
-            print ("lista cookie: " + str(lista_cookie))
 
             produtos_carrinho = []
             for p in lista_cookie:
@@ -52,14 +46,15 @@ def adicionar_carrinho():
                 produtos_carrinho.append(produto[1])
 
             novoCookie = ""
+            total_itens = 0
+
             for c in range(0, len(produtos_carrinho), 2):
                 novoCookie += str(produtos_carrinho[c]) + "_" + str(produtos_carrinho[c + 1]) + ";"
+                total_itens += int(produtos_carrinho[c + 1])
 
-            resposta = make_response("200 | OK")
+            resposta = make_response(str(total_itens))
             resposta.set_cookie('carrinho_compras', novoCookie)
-
-            print ("cookie atual: " + str(novoCookie))
-            print("")
+            # resposta.headers['location'] = url_for('index')
 
             return resposta
         else:
@@ -68,6 +63,8 @@ def adicionar_carrinho():
                 produto.append(dados_json[p])
             
             novoCookie = ""
+            total_itens = 0
+
             for p in range(len(produto)):
                 novoCookie += str(produto[p])
 
@@ -75,7 +72,9 @@ def adicionar_carrinho():
                     novoCookie += "_"
             novoCookie += ";"
 
-            resposta = make_response("200 | OK")
+            total_itens = int(produto[1])
+
+            resposta = make_response(str(total_itens))
             resposta.set_cookie('carrinho_compras', novoCookie)
 
             return resposta

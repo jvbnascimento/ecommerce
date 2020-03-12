@@ -11,6 +11,7 @@ from app.models.categoria import Categoria
 
 current_port = '8080/'
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
@@ -25,6 +26,19 @@ def index():
 
     lista_produtos = Produto.query.order_by('descricao').all()
     categorias = Categoria.query.order_by('nome').all()
+
+    cookie = request.cookies.get('carrinho_compras')
+
+    total_itens = 0
+    
+    if (cookie):
+        lista_cookie = cookie.split(";")
+
+        lista_cookie.pop(len(lista_cookie) - 1)
+
+        for p in lista_cookie:
+            item = p.split("_")
+            total_itens += int(item[1])
 
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email=form.email.data).first()
@@ -41,11 +55,12 @@ def index():
         return redirect(next_page)
 
     return render_template(
-        'index.html', 
-        title ='Ecommerce - Página Inicial', 
-        user = usuario, 
-        form = form, 
-        url = current_url, 
-        produtos = lista_produtos, 
-        categorias = categorias
+        'index.html',
+        title = 'Ecommerce - Página Inicial',
+        user = usuario,
+        form = form,
+        url = current_url,
+        produtos = lista_produtos,
+        categorias = categorias,
+        total_itens = total_itens
     )
