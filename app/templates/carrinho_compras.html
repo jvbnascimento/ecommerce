@@ -6,6 +6,7 @@
 
 {% block script_adicional %}
 <script src="../static/js/mostrar_quantidade_produtos_carrinho/mostrar_quantidade_produtos_carrinho.js"></script>
+<script src="../static/js/modificar_quantidades_produtos/modificar_quantidades_produtos.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -49,9 +50,12 @@
                 <div class="col">
                     <div class="btn-group" name="menu-quantidade-itens" role="group" aria-label="Basic example">
                         <input type="hidden" value="{{ p.id }}" />
-                        <button type="button" class="btn btn-outline-light">&#10094</button>
-                        <input type="text" class="col-6 sem-outline text-center" value="1">
-                        <button type="button" class="btn btn-outline-light">&#10095</button>
+                        <button type="button" class="btn btn-outline-light index-2">&#10094</button>
+                        <input type="text" class="col-6 sem-outline text-center index-1 sem-borda" value="1">
+                        <button type="button" class="btn btn-outline-light index-2">&#10095</button>
+                        <a href="#" class="btn btn-primary index-0">
+                            <img src="../static/img/outline_clear_white_18dp.png" />
+                        </a>
                     </div>
                 </div>
             </div>
@@ -61,7 +65,7 @@
     {% else %}
     <div class="row justify-content-center espaco-interno-10">
         <div class="col espaco-interno-10">
-            <h3>Sem produtos no carrinho. Comece a adicionar produtos ao seu carrinho agora mesmo, 
+            <h3>Sem produtos no carrinho. Comece a adicionar produtos ao seu carrinho agora mesmo,
                 <a href="#">clicando aqui!</a>
             </h3>
         </div>

@@ -51,6 +51,9 @@
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 }
+.sem-borda {
+    border: 0;
+}
 .sem-borda-radius {
     border-radius: 0;
 }
@@ -92,4 +95,15 @@
 }
 .espaco-abaixo-30 {
     margin-bottom: 30px;
+}
+
+/* INDEX  */
+.index-0 {
+    z-index: 0;
+}
+.index-1 {
+    z-index: 1;
+}
+.index-2 {
+    z-index: 2;
 }
