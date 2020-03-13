@@ -14,8 +14,7 @@
     {% for p in produtos %}
     <div class="row justify-content-center espaco-interno-10 text-white">
         <div class="col-4 bg-primary borda-radius-10 espaco-interno-10 sem-borda-radius-top-bottom-direita-10">
-            <img class="card-img-top img-fluid rounded mx-auto d-block w-100"
-                src="../static/img/{{ p.imagem }}" />
+            <img class="card-img-top img-fluid rounded mx-auto d-block w-100" src="../static/img/{{ p.imagem }}" />
         </div>
 
         <div class="col-4 bg-primary espaco-interno-10 borda-radius-top-bottom-direita-10">
@@ -26,15 +25,15 @@
             </div>
 
             <div class="dropdown-divider"></div>
-            
+
             <div class="row text-center">
                 <div class="col">
                     <h3> {{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }} </h3>
                 </div>
             </div>
-            
+
             <div class="dropdown-divider"></div>
-            
+
             <div class="row espaco-interno-10 text-center">
                 <div class="col">
                     {% for cp in p.categorias_produto %}
@@ -43,9 +42,9 @@
                     {% endfor %}
                 </div>
             </div>
-            
+
             <div class="dropdown-divider"></div>
-            
+
             <div class="row espaco-interno-10 text-center">
                 <div class="col">
                     <div class="btn-group" name="menu-quantidade-itens" role="group" aria-label="Basic example">
@@ -59,6 +58,14 @@
         </div>
     </div>
     {% endfor %}
+    {% else %}
+    <div class="row justify-content-center espaco-interno-10">
+        <div class="col espaco-interno-10">
+            <h3>Sem produtos no carrinho. Comece a adicionar produtos ao seu carrinho agora mesmo, 
+                <a href="#">clicando aqui!</a>
+            </h3>
+        </div>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

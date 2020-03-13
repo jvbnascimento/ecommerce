@@ -25,36 +25,34 @@ def adicionar_carrinho():
 
             lista_cookie.pop(len(lista_cookie) - 1)
 
-            produtos_carrinho = []
+            id_produtos_carrinho = []
+            quantidade_produtos_carrinho = []
+
             for p in lista_cookie:
                 item = p.split("_")
 
-                produtos_carrinho.append(int(item[0]))
-                produtos_carrinho.append(int(item[1]))
-
+                id_produtos_carrinho.append(int(item[0]))
+                quantidade_produtos_carrinho.append(int(item[1]))
+            
             produto = []
             for p in dados_json:
                 produto.append(dados_json[p])
 
-            if produto[0] in produtos_carrinho:
-                for p in range(0, len(produtos_carrinho), 2):
-                    if produtos_carrinho[p] == produto[0]:
-                        produtos_carrinho[p + 1] += produto[1]
-
+            if produto[0] in id_produtos_carrinho:
+                quantidade_produtos_carrinho[id_produtos_carrinho.index(produto[0])] += produto[1]
             else:
-                produtos_carrinho.append(produto[0])
-                produtos_carrinho.append(produto[1])
+                id_produtos_carrinho.append(produto[0])
+                quantidade_produtos_carrinho.append(produto[1])
 
             novoCookie = ""
             total_itens = 0
-
-            for c in range(0, len(produtos_carrinho), 2):
-                novoCookie += str(produtos_carrinho[c]) + "_" + str(produtos_carrinho[c + 1]) + ";"
-                total_itens += int(produtos_carrinho[c + 1])
-
+            
+            for c in range(len(id_produtos_carrinho)):
+                novoCookie += str(id_produtos_carrinho[c]) + "_" + str(quantidade_produtos_carrinho[c]) + ";"
+                total_itens += int(quantidade_produtos_carrinho[c])
+            
             resposta = make_response(str(total_itens))
             resposta.set_cookie('carrinho_compras', novoCookie)
-            # resposta.headers['location'] = url_for('index')
 
             return resposta
         else:
