@@ -16,6 +16,10 @@ $(document).ready(function() {
             if (quantidade_itens.val() > 1) {
                 quantidade_itens.val(parseInt(quantidade_itens.val()) - 1);
             }
+
+            if ($("#lista-produtos-carrinho").length >= 1) {
+                console.log("here")
+            }
         });
     });
 
@@ -25,6 +29,10 @@ $(document).ready(function() {
             let quantidade_itens = $(this).parent().children("input[type='text']");
 
             quantidade_itens.val(parseInt(quantidade_itens.val()) + 1);
+
+            if ($("#lista-produtos-carrinho").length >= 1) {
+                
+            }
         });
     });
 });

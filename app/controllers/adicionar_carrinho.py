@@ -2,11 +2,7 @@ import json
 
 from app import app
 
-from flask import flash, request, render_template, make_response, url_for, redirect
-
-from app.models.usuario import Usuario
-from app.models.categoria import Categoria
-from app.controllers.forms import LoginForm
+from flask import request, make_response
 
 current_port = '8080/'
 

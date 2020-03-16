@@ -16,5 +16,5 @@ migrate = Migrate(app, db)
 
 login = LoginManager(app)
 
-from app.controllers import index, user, login, logout, cadastrar_usuario, gerenciar_estoque, editar_produto, deletar_produto, fazer_compra, adicionar_carrinho, carrinho_compras
 from app.models import usuario, produto, categoria, compra
+from app.controllers import index, user, login, logout, cadastrar_usuario, gerenciar_estoque, editar_produto, deletar_produto, fazer_compra, adicionar_carrinho, carrinho_compras, remover_carrinho

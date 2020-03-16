@@ -21,16 +21,16 @@ def index_user():
 
         cookie = request.cookies.get('carrinho_compras')
 
-    total_itens = 0
+        total_itens = 0
 
-    if (cookie):
-        lista_cookie = cookie.split(";")
+        if (cookie):
+            lista_cookie = cookie.split(";")
 
-        lista_cookie.pop(len(lista_cookie) - 1)
+            lista_cookie.pop(len(lista_cookie) - 1)
 
-        for p in lista_cookie:
-            item = p.split("_")
-            total_itens += int(item[1])
+            for p in lista_cookie:
+                item = p.split("_")
+                total_itens += int(item[1])
 
         return render_template(
             'index.html',
