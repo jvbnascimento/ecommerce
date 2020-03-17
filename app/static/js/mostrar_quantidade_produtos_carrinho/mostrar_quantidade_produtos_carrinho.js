@@ -3,11 +3,7 @@ $(document).ready(function() {
     let input_quantidade_produto = $("#lista-produtos-carrinho").children().children().children("div").children().children("div[name='menu-quantidade-itens']");
 
     // TRANSFORMAR O COOKIE EM UMA LISTA 
-    let cookie = document.cookie
-    cookie = cookie.replace("\"", "")
-    cookie = cookie.replace("\"", "")
-
-    cookie = cookie.split("=")[1].split("\\073");
+    let cookie = document.cookie.split("carrinho_compras=")[1].replace("\"", "").replace("\"", "").split("\\073");
 
     // PERCORRER LISTA 
     input_quantidade_produto.each(function() {

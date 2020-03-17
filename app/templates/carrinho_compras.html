@@ -11,66 +11,86 @@
 {% endblock %}
 
 {% block content %}
-<div id="lista-produtos-carrinho" class="container">
-    {% if produtos %}
-    {% for p in produtos %}
-    <div class="row justify-content-center espaco-interno-10 text-white">
-        <div class="col-4 bg-primary borda-radius-10 espaco-interno-10 sem-borda-radius-top-bottom-direita-10">
-            <img class="card-img-top img-fluid rounded mx-auto d-block w-100" src="../static/img/{{ p.imagem }}" />
-        </div>
-
-        <div class="col-4 bg-primary espaco-interno-10 borda-radius-top-bottom-direita-10">
-            <div class="row espaco-interno-10 text-center">
-                <div class="col">
-                    <h5> {{ p.descricao }} </h5>
-                </div>
-            </div>
-
-            <div class="dropdown-divider"></div>
-
-            <div class="row text-center">
-                <div class="col">
-                    <h3> {{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }} </h3>
-                </div>
-            </div>
-
-            <div class="dropdown-divider"></div>
-
-            <div class="row espaco-interno-10 text-center">
-                <div class="col">
-                    {% for cp in p.categorias_produto %}
-                    <span class="badge-pill bg-warning espaco-interno-10 espaco-externo-5 espaco-abaixo-10 fonte-preta">
-                        {{ cp.nome }}</span>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="dropdown-divider"></div>
-
-            <div class="row espaco-interno-10 text-center">
-                <div class="col">
-                    <div class="btn-group" name="menu-quantidade-itens" role="group" aria-label="Basic example">
-                        <input type="hidden" value="{{ p.id }}" />
-                        <button type="button" class="btn btn-outline-light index-2">&#10094</button>
-                        <input type="text" class="col-6 sem-outline text-center index-1 sem-borda" value="1">
-                        <button type="button" class="btn btn-outline-light index-2">&#10095</button>
-                        <a href="#" class="btn btn-primary index-0">
-                            <img src="../static/img/outline_clear_white_18dp.png" />
-                        </a>
+<div class="nav">
+    <div class="row w-100 justify-content-center sem-espacos-externos">
+        <div class="col-10 sem-espacos-externos">
+            <div id="lista-produtos-carrinho" class="container">
+                {% if produtos %}
+                {% for p in produtos %}
+                <div class="row justify-content-center espaco-interno-10 text-white">
+                    <div class="col-4 bg-primary borda-radius-10 espaco-interno-10 sem-borda-radius-top-bottom-direita-10">
+                        <img class="card-img-top img-fluid rounded mx-auto d-block w-100" src="../static/img/{{ p.imagem }}" />
+                    </div>
+            
+                    <div class="col-4 bg-primary espaco-interno-10 borda-radius-top-bottom-direita-10">
+                        <div class="row espaco-interno-10 text-center">
+                            <div class="col">
+                                <h5> {{ p.descricao }} </h5>
+                            </div>
+                        </div>
+            
+                        <div class="dropdown-divider"></div>
+            
+                        <div class="row text-center">
+                            <div class="col">
+                                <h3> {{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }} </h3>
+                            </div>
+                        </div>
+            
+                        <div class="dropdown-divider"></div>
+            
+                        <div class="row espaco-interno-10 text-center">
+                            <div class="col">
+                                {% for cp in p.categorias_produto %}
+                                <span class="badge-pill bg-warning espaco-interno-10 espaco-externo-5 espaco-abaixo-10 fonte-preta">
+                                    {{ cp.nome }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+            
+                        <div class="dropdown-divider"></div>
+            
+                        <div class="row espaco-interno-10 text-center">
+                            <div class="col">
+                                <div class="btn-group" name="menu-quantidade-itens" role="group" aria-label="Basic example">
+                                    <input type="hidden" value="{{ p.id }}" />
+                                    <button type="button" class="btn btn-outline-light index-2">&#10094</button>
+                                    <input type="text" class="col-6 sem-outline text-center index-1 sem-borda" value="1">
+                                    <button type="button" class="btn btn-outline-light index-2">&#10095</button>
+                                    <a href="#" class="btn btn-primary index-0">
+                                        <img src="../static/img/outline_clear_white_18dp.png" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% else %}
+                <div class="row justify-content-center espaco-interno-10">
+                    <div class="col espaco-interno-10">
+                        <h3>Sem produtos no carrinho. Comece a adicionar produtos ao seu carrinho agora mesmo,
+                            <a href="#">clicando aqui!</a>
+                        </h3>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col sem-espacos-externos">
+            <div class="card bg-light sticky-top" style="max-width: 18rem;">
+                <div class="card-header text-center">
+                    <h3>Meu Carrinho</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                        content.</p>
+                </div>
             </div>
         </div>
     </div>
-    {% endfor %}
-    {% else %}
-    <div class="row justify-content-center espaco-interno-10">
-        <div class="col espaco-interno-10">
-            <h3>Sem produtos no carrinho. Comece a adicionar produtos ao seu carrinho agora mesmo,
-                <a href="#">clicando aqui!</a>
-            </h3>
-        </div>
-    </div>
-    {% endif %}
 </div>
+    
+
 {% endblock %}

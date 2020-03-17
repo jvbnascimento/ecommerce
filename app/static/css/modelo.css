@@ -4,6 +4,9 @@
 }
 
 /* ESPACOS INTERNOS */
+.sem-espacos-internos {
+    padding: 0;
+}
 .sem-espaco-interno-vertical {
     padding-top: 0;
     padding-bottom: 0;
@@ -80,7 +83,7 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-.sem-espacos {
+.sem-espacos-externo {
     margin: 0;
 }
 
