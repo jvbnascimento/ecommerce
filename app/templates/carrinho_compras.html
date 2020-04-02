@@ -12,17 +12,17 @@
 
 {% block content %}
 <div class="nav">
-    <div class="row w-100 justify-content-center sem-espacos-externos">
-        <div class="col-10 sem-espacos-externos">
+    <div id="carrinho_compras" class="row justify-content-center sem-espacos-externos">
+        <div class="col-9 sem-espacos-externos">
             <div id="lista-produtos-carrinho" class="container">
                 {% if produtos %}
                 {% for p in produtos %}
-                <div class="row justify-content-center espaco-interno-10 text-white">
-                    <div class="col-4 bg-primary borda-radius-10 espaco-interno-10 sem-borda-radius-top-bottom-direita-10">
-                        <img class="card-img-top img-fluid rounded mx-auto d-block w-100" src="../static/img/{{ p.imagem }}" />
+                <div class="row justify-content-center espaco-interno-10">
+                    <div class="col-4 bg-secondary borda-radius-10 espaco-interno-10 sem-borda-radius-top-bottom-direita-10">
+                        <img class="card-img-top" src="../static/img/{{ p.imagem }}" />
                     </div>
             
-                    <div class="col-4 bg-primary espaco-interno-10 borda-radius-top-bottom-direita-10">
+                    <div class="col-4 bg-secondary espaco-interno-10 borda-radius-top-bottom-direita-10">
                         <div class="row espaco-interno-10 text-center">
                             <div class="col">
                                 <h5> {{ p.descricao }} </h5>
@@ -57,7 +57,7 @@
                                     <button type="button" class="btn btn-outline-light index-2">&#10094</button>
                                     <input type="text" class="col-6 sem-outline text-center index-1 sem-borda" value="1">
                                     <button type="button" class="btn btn-outline-light index-2">&#10095</button>
-                                    <a href="#" class="btn btn-primary index-0">
+                                    <a href="#" class="btn btn-secondary index-0">
                                         <img src="../static/img/outline_clear_white_18dp.png" />
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
 
         {% if produtos %}
         <div class="col espaco-externo-vertical-10 w-100">
-            <div class="card bg-light sticky-top" style="max-width: 18rem;">
+            <div class="card bg-light sticky-top">
                 <div class="card-header text-center">
                     <h3>Meu Carrinho</h3>
                 </div>
@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="col espaco-externo-vertical-10">
-                            <h5 class="card-text">{{ "R$ %.2f"|format(produtos | sum(attribute='preco')) | replace(".", ",") }}</h5>
+                            <h5 class="card-text"></h5>
                         </div>
                     </div>
 
