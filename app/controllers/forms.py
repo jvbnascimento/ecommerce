@@ -28,6 +28,12 @@ class RegistrationForm(FlaskForm):
             raise ValidationError(
                 'Este email já está em uso. Escolha um email diferente e tente novamente.')
 
+class EditarDadosUsuarioForm(FlaskForm):
+    nome = StringField('Nome', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+
+    editarDadosUsuario = SubmitField('Salvar Alterações')
+
 
 class CadastroProdutoForm(FlaskForm):
     descricao = StringField('Nome Produto', validators=[DataRequired()])
@@ -39,9 +45,5 @@ class CadastroProdutoForm(FlaskForm):
 class EditarDadosProdutoForm(FlaskForm):
     descricao = StringField('Nome Produto', validators=[DataRequired()])
     quantidade = StringField('Quantidade', validators=[DataRequired()])
-    preco = StringField('Preço', validators=[DataRequired()])
+    preco = StringField('R$ Preço', validators=[DataRequired()])
     editarDadosProduto = SubmitField('Salvar Alterações')
-
-
-class UsuarioEditarDadosUsuarioForm(FlaskForm):
-    pass

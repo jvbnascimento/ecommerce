@@ -83,6 +83,9 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+.espaco-externo-topo-10 {
+    margin-top: 10px;
+}
 .sem-espacos-externo {
     margin: 0;
 }

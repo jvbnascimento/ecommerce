@@ -1,0 +1,68 @@
+{% extends "modelo_html.html" %}
+
+{% block link_adicional %}
+<link rel="stylesheet" type="text/css" href="../static/css/modelo.css">
+{% endblock %}
+
+{% block script_adicional %}
+<!-- <script src="../static/js/gerenciar_categorias/adicionar_categoria.js"></script>
+<script src="../static/js/gerenciar_categorias/remover_categoria.js"></script>
+<script src="../static/js/padronizar_descricao/padronizar_descricao.js"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="accordion" id="accordionExample">
+    {% for u in usuarios %}
+    {% if u.tipo == 1 %}
+    <h3 class="text-center espaco-externo-vertical-10"> Administradores </h3>
+    {% elif u.tipo == 2 %}
+    <h3 class="text-center espaco-externo-vertical-10"> Usuários </h3>
+    {% endif %}
+    <div class="card">
+        <div class="card-header" id="heading_{{ u.id }}">
+            <h2 class="mb-0">
+                <div class="row">
+                    <div class="col-10">
+                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                            data-target="#collapse_{{ u.id }}" aria-expanded="true" aria-controls="collapse_{{ u.id }}">
+                            {{ u.email }}
+                        </button>
+                    </div>
+
+                    <div class="col text-center">
+                        <a class="btn btn-outline-primary espaco-externo-horizontal-5 borda-radius-30 espaco-interno-10"
+                            href="{{ url_for('editar_cadastro', id = u.id) }}">
+                            <img src="../static/img/outline_edit_black_18dp.png"
+                                class="align-self-center img-fluid rounded mx-auto d-block" alt="Editar Cadastro"
+                                title="Editar Cadastro" />
+                        </a>
+                    </div>
+
+                    {% if u.tipo == 2 %}
+                    <div class="col text-center">
+                        <a class="btn btn-outline-primary espaco-externo-horizontal-5 borda-radius-30 espaco-interno-10" href="{{ url_for('deletar_cadastro', id = u.id) }}">
+                            <img src="../static/img/outline_delete_black_18dp.png"
+                                class="align-self-center img-fluid rounded mx-auto d-block" alt="Deletar Cadastro"
+                                title="Deletar Cadastro" />
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </h2>
+        </div>
+
+        <div id="collapse_{{ u.id }}" class="collapse" aria-labelledby="heading_{{ u.id }}"
+            data-parent="#accordionExample">
+            <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+                moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+                Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
+                proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+                aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -104,7 +104,7 @@
 					<a class="dropdown-item" href="{{ url_for('logout') }}">Sair</a>
 					{% elif user.tipo == 1 %}
 					<a class="dropdown-item" href="{{ url_for('gerenciar_estoque') }}">Gerenciar Estoque</a>
-					<a class="dropdown-item" href="#">Gerenciar Cadastros</a>
+					<a class="dropdown-item" href="{{ url_for('gerenciar_cadastros') }}">Gerenciar Cadastros</a>
 					<a class="dropdown-item" href="#">Relatórios</a>
 					<a class="dropdown-item" href="{{ url_for('logout') }}">Sair</a>
 					{% endif %}
