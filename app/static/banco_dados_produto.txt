@@ -1,0 +1,15 @@
+INSERT INTO categoria VALUES (DEFAULT, 'Eletrônicos')
+INSERT INTO categoria VALUES (DEFAULT, 'Informática')
+
+INSERT INTO produto VALUES (DEFAULT, 'PC Gamer EasyPC FirstBlood Intel Core i5 (GeForce GTX 1050 Ti 4GB) 8GB HD 1TB Monitor LED 19\\' HDMI', 100, 3229, 'p17.jpg')
+
+INSERT INTO produto VALUES (DEFAULT, 'Console Playstation 4 Pro 1 TB + Controle Wireless DualShock 4', 100, 2999.99, '133092720_1GG.jpg')
+
+INSERT INTO produto VALUES (DEFAULT, 'MacBook Air MQD32BZ/A com Intel Core i5 Dual Core 8GB 128GB SSD 13\\'' Prata - Apple', 100, 5599.99, 'p4.png')
+
+INSERT INTO produto VALUES (DEFAULT, 'iPhone XR 128GB Azul Tela 6.1” iOS 12 4G 12MP - Apple', 100, 4369.05, 'p40.png')
+
+INSERT INTO produto_categoria VALUES (1, 1)
+INSERT INTO produto_categoria VALUES (2, 2)
+INSERT INTO produto_categoria VALUES (3, 1)
+INSERT INTO produto_categoria VALUES (4, 2)

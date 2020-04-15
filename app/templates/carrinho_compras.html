@@ -23,7 +23,7 @@
                     </div>
             
                     <div class="col-4 bg-secondary espaco-interno-10 borda-radius-top-bottom-direita-10">
-                        <div class="row espaco-interno-10 text-center">
+                        <div class="row espaco-interno-10 text-center fonte-branca">
                             <div class="col">
                                 <h5> {{ p.descricao }} </h5>
                             </div>
@@ -31,7 +31,7 @@
             
                         <div class="dropdown-divider"></div>
             
-                        <div class="row text-center">
+                        <div class="row text-center fonte-branca">
                             <div class="col">
                                 <h3> {{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }} </h3>
                             </div>
@@ -99,7 +99,7 @@
 
                     <div class="row">
                         <div class="col text-center">
-                            <a href="#" class="btn btn-danger btn-block espaco-externo-vertical-10">Finalizar Compra</a>
+                            <a href="{{ url_for('finalizar_compra') }}" class="btn btn-danger btn-block espaco-externo-vertical-10">Finalizar Compra</a>
                         </div>
                     </div>
                 </div>

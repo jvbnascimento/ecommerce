@@ -13,7 +13,7 @@ current_port = '8080/'
 
 @app.route('/carrinho_compras', methods=['GET', 'POST'])
 def carrinho_compras():
-    if current_user.is_anonymous or current_user.tipo == 2:
+    if current_user.is_anonymous:
         form = LoginForm()
         usuario = ''
 
@@ -54,6 +54,33 @@ def carrinho_compras():
             title = 'Ecommerce - Meus produtos',
             user = usuario,
             form = form,
+            url = current_url,
+            produtos = lista_produtos,
+            categorias = categorias
+        )
+    elif current_user.tipo == 2:
+        current_url = request.url.split(current_port)
+        current_url = current_url[1]
+        
+        Produto.query.order_by('descricao').all()
+        categorias = Categoria.query.order_by('nome').all()
+
+        lista_produtos = []
+        cookie = request.cookies.get('carrinho_compras')
+        
+        if (cookie):
+            lista_cookie = cookie.split(";")
+
+            lista_cookie.pop(len(lista_cookie) - 1)
+
+            for p in lista_cookie:
+                item = p.split("_")
+                lista_produtos.append(Produto.query.filter_by(id = item[0]).first_or_404())
+
+        return render_template(
+            'carrinho_compras.html',
+            title = 'Ecommerce - Meus produtos',
+            user = current_user,
             url = current_url,
             produtos = lista_produtos,
             categorias = categorias

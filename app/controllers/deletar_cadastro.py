@@ -26,7 +26,7 @@ def deletar_cadastro(id):
                 
                 return redirect(url_for('gerenciar_cadastros'))
             
-            flash('Você não pode deletar o perfil de administrador.')    
+            flash('Você não pode deletar o perfil de administrador.')
             return redirect(url_for('gerenciar_cadastros'))
 
     flash('Você não é um administrador do sistema.')
