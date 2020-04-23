@@ -19,7 +19,8 @@ def minhas_compras():
         current_url = current_url[1]
 
         lista_compras = Compra.query.filter_by(
-            usuario_id=current_user.id).order_by('data').all()
+            usuario_id = current_user.id
+        ).order_by('data').all()
 
         cookie = request.cookies.get('carrinho_compras')
 

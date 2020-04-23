@@ -5,30 +5,57 @@
 {% extends "modelo_html.html" %}
 
 {% block script_adicional %}
-<!-- <script src="../static/js/padronizar_descricao/padronizar_descricao.js"></script> -->
-<!-- <script src="../static/js/modificar_quantidades_produtos/modificar_quantidades_produtos.js"></script> -->
-<!-- <script src="../static/js/carrinho/adicionar_carrinho.js"></script> -->
+<script src="../static/js/minhas_compras/calcular_preco_total.js"></script>
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid sem-espacos-internos"><br>
+<div class="container-fluid" id="lista_compras"><br>
     {% for c in lista_compras %}
-    <div class="row espaco-interno-10">
-        <div class="col text-center">
-            <h3> Compra do dia {{ c.data }} </h3>
+    <div name="compra_{{ c.id }}" class="row espaco-abaixo-20 espaco-interno-10">
+        <div class="col borda-solid borda-radius-10 borda-info bg-info">
+            <div class="row text-center espaco-interno-10">
+                <div class="col">
+                    <h3 class="fonte-branca"> Compra #{{ c.id }} </h3>
+                </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+            
+            <div class="row text-center espaco-interno-10">
+                <div class="col-5 espaco-externo-horizontal-10">
+                    <h5 class="fonte-branca">Descrição do Produto</h5>
+                </div>
+                <div class="col espaco-externo-horizontal-10">
+                    <h5 class="fonte-branca">Quantidade</h5>
+                </div>
+                <div class="col espaco-externo-horizontal-10">
+                    <h5 class="fonte-branca">Preço Unitário</h5>
+                </div>
+                <div class="col espaco-externo-horizontal-10">
+                    <h5 class="fonte-branca">Preço Total</h5>
+                </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            {% for p in c.produtos_compra %}
+            <div class="row text-center espaco-interno-10">
+                <div class="col-5 espaco-interno-10 espaco-externo-horizontal-10 text-left bg-secondary fonte-branca borda-radius-10">
+                    <h6 name="descricao">{{ p.produto.descricao }}</h6>
+                </div>
+                <div class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
+                    <h6 name="quantidade_item">{{ p.quantidade_item }}</h6>
+                </div>
+                <div class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
+                    <h6 name="preco_unitario">{{ "R$ %.2f"|format(p.preco_item|float) | replace(".", ",") }}</h6>
+                </div>
+                <div class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
+                    <h6 name="preco_total">{{ "R$ %.2f"|format(p.preco_item|float) | replace(".", ",") }}</h6>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-
-    <div class="row">
-        <div class="col">
-
-        </div>
-        <div class="col">
-
-        </div>
-    </div>
-
-    <div class="dropdown-divider"></div>
     {% endfor %}
 </div>
 {% endblock %}
