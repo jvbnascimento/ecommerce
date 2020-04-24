@@ -6,6 +6,7 @@
 
 {% block script_adicional %}
 <script src="../static/js/minhas_compras/calcular_preco_total.js"></script>
+<script src="../static/js/minhas_compras/formatar_data.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +21,7 @@
             </div>
 
             <div class="dropdown-divider"></div>
-            
+
             <div class="row text-center espaco-interno-10">
                 <div class="col-5 espaco-externo-horizontal-10">
                     <h5 class="fonte-branca">Descrição do Produto</h5>
@@ -40,20 +41,60 @@
 
             {% for p in c.produtos_compra %}
             <div class="row text-center espaco-interno-10">
-                <div class="col-5 espaco-interno-10 espaco-externo-horizontal-10 text-left bg-secondary fonte-branca borda-radius-10">
+                <div
+                    class="col-5 espaco-interno-10 espaco-externo-horizontal-10 text-left bg-secondary fonte-branca borda-radius-10">
                     <h6 name="descricao">{{ p.produto.descricao }}</h6>
                 </div>
-                <div class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
+                <div
+                    class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
                     <h6 name="quantidade_item">{{ p.quantidade_item }}</h6>
                 </div>
-                <div class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
+                <div
+                    class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
                     <h6 name="preco_unitario">{{ "R$ %.2f"|format(p.preco_item|float) | replace(".", ",") }}</h6>
                 </div>
-                <div class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
+                <div
+                    class="col espaco-interno-10 espaco-externo-horizontal-10 bg-secondary fonte-branca borda-radius-10 conteudo-flex alinhar-itens-centro">
                     <h6 name="preco_total">{{ "R$ %.2f"|format(p.preco_item|float) | replace(".", ",") }}</h6>
                 </div>
             </div>
             {% endfor %}
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row espaco-interno-10">
+                <div class="col">
+                    <h5 name="data_compra" class="fonte-branca">Data da compra: {{ c.data }}</h5>
+                </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row espaco-interno-10">
+                <div class="col">
+                    <h5 name="total_itens" class="fonte-branca"> Número total de itens: {{ c.total_itens }} </h5>
+                </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row espaco-interno-10">
+                <div class="col">
+                    <h5 name="preco_total_compra" class="fonte-branca"> Total: </h5>
+                </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row espaco-interno-10 text-center">
+                <div class="col espaco-abaixo-10">
+                    <button type="submit" class="btn btn-secondary">Imprimir</button>
+                </div>
+
+                <div class="col espaco-abaixo-10">
+                    <button type="submit" class="btn btn-secondary">Enviar por email</button>
+                </div>
+            </div>
         </div>
     </div>
     {% endfor %}
