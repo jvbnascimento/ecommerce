@@ -16,7 +16,7 @@ current_port = '8080/'
 @app.route('/user/gerenciar_cadastros/editar_dados/<id>', methods=['GET', 'POST'])
 @login_required
 def editar_cadastro(id):
-    if current_user.is_authenticated and current_user.tipo == 1 or current_user.tipo == 2:
+    if current_user.is_authenticated and current_user.tipo == 1:
         current_url = request.url.split(current_port)
         current_url = current_url[1]
 

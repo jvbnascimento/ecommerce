@@ -15,7 +15,10 @@ class Produto(db.Model):
     preco = db.Column(db.Float)
     imagem = db.Column(db.String)
     categorias_produto = db.relationship(
-        'Categoria', secondary=produto_categoria, backref=db.backref('produtos', lazy=True))
+        'Categoria',
+        secondary = produto_categoria,
+        backref = db.backref('produtos', lazy=True)
+    )
 
     def __repr__(self):
         return '<Descricao:{}, Quantidade:{}, Preco:{}, Imagem:{}>'.format(self.descricao, self.quantidade, self.preco, self.imagem)

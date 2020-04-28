@@ -1,0 +1,73 @@
+{% block link_adicional %}
+<link rel="stylesheet" type="text/css" href="../../../static/css/modelo.css">
+{% endblock %}
+
+{% extends "modelo_html.html" %}
+
+{% block script_adicional %}
+<script src="../../../static/js/padronizar_descricao/padronizar_descricao.js"></script>
+<script src="../../../static/js/modificar_quantidades_produtos/modificar_quantidades_produtos.js"></script>
+<script src="../../../static/js/carrinho/adicionar_carrinho.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- ====================================================================================================== -->
+<div class="container">
+    {% if produtos_categoria != None and produtos_categoria|length != 0 %}
+    <div id="lista-produtos" class="row align-items-center justify-content-center">
+        {% for p in produtos_categoria %}
+        <div class="col-3 espaco-externo-vertical-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col text-right">
+                        <h5><span class="badge badge-secondary md-8">{{ p.quantidade }}</span></h5>
+                    </div>
+                </div>
+
+                <img class="card-img-top espaco-interno-10 img-fluid rounded mx-auto d-block w-30"
+                    src="../../../static/img/{{ p.imagem }}" alt="{{ p.descricao }}">
+
+                <div class="dropdown-divider"></div>
+
+                <div class="nav justify-content-center align-items-center espaco-interno-10 espaco-abaixo-10">
+                    <h5 class="text-center">{{ p.descricao }}</h5>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <h3 class="card-text text-center espaco-interno-10">
+                    {{ "R$ %.2f"|format(p.preco|float) | replace(".", ",") }}
+                </h3>
+
+                <div class="dropdown-divider"></div>
+
+                <div class="nav espaco-interno-10 justify-content-center">
+                    {% for cp in p.categorias_produto %}
+                    <span class="badge-pill bg-warning espaco-interno-10 espaco-externo-5 espaco-abaixo-10">
+                        {{ cp.nome }}</span>
+                    {% endfor %}
+                </div>
+
+                {% if user.tipo == 2 or not user %}
+                <div class="dropdown-divider"></div>
+
+                <div class="btn-group espaco-interno-10" name="menu-quantidade-itens" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-danger">&#10094</button>
+                    <input type="text" class="col-6 sem-outline text-center" value="1">
+                    <button type="button" class="btn btn-outline-danger">&#10095</button>
+                </div>
+
+                <div class="col espaco-interno-10">
+                    <form action="#">
+                        <input type="hidden" value="{{ p.id }}" />
+                        <button type="submit" class="btn btn-danger btn-block espaco-abaixo-10" name="botao-adicionar-carrinho">Adicionar ao Carrinho</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

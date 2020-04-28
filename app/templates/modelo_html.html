@@ -45,7 +45,7 @@
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						{% for c in categorias %}
-						<a class="dropdown-item" href="#">{{ c.nome }}</a>
+						<a class="dropdown-item" href="{{ url_for('categoria', id = c.id) }}">{{ c.nome }}</a>
 						{% endfor %}
 					</div>
 				</li>
@@ -100,7 +100,7 @@
 					<a class="dropdown-item" href="#">Esqueceu a senha?</a>
 					{% elif user.tipo == 2 %}
 					<a class="dropdown-item" href="{{ url_for('minhas_compras') }}">Minhas compras</a>
-					<a class="dropdown-item" href="#">Meus dados</a>
+					<a class="dropdown-item" href="{{ url_for('meus_dados') }}">Meus dados</a>
 					<a class="dropdown-item" href="{{ url_for('logout') }}">Sair</a>
 					{% elif user.tipo == 1 %}
 					<a class="dropdown-item" href="{{ url_for('gerenciar_estoque') }}">Gerenciar Estoque</a>
@@ -112,7 +112,11 @@
 			</div>
 			{% if user.tipo == 2 and not url.startswith('carrinho_compras') or not user %}
 			<a id="icone-carrinho-compras" href="{{ url_for('carrinho_compras') }}" class="btn btn-primary sem-espaco-interno-vertical espaco-externo-horizontal-5">
-				<img src="../static/img/outline_shopping_cart_black_18dp.png">
+                {% if url.startswith('user/categoria') %}
+                <img src="../../../static/img/outline_shopping_cart_black_18dp.png">
+                {% else %}
+                <img src="../static/img/outline_shopping_cart_black_18dp.png">
+                {% endif %}
 				<span class="badge badge-light">{{ total_itens }}</span>
 			</a>
 			{% endif %}

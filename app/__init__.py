@@ -22,4 +22,4 @@ from app.controllers import gerenciar_estoque, editar_produto, deletar_produto
 from app.controllers import adicionar_carrinho, carrinho_compras
 from app.controllers import remover_carrinho, gerenciar_cadastros
 from app.controllers import editar_cadastro, deletar_cadastro, finalizar_compra
-from app.controllers import minhas_compras
+from app.controllers import minhas_compras, meus_dados, categoria
