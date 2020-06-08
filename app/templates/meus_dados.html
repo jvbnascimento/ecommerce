@@ -5,64 +5,236 @@
 {% extends "modelo_html.html" %}
 
 {% block script_adicional %}
-<!-- <script src="../../../static/js/gerenciar_categorias/adicionar_categoria.js"></script>
-<script src="../../../static/js/gerenciar_categorias/remover_categoria.js"></script> -->
+<script src="../../../static/js/cadastro_usuario/formatar_telefone.js"></script>
+<script src="../../../static/js/cadastro_usuario/validar_cep.js"></script>
 {% endblock %}
 
 {% block content %}
 <div id="form-editar-cadastro">
-    <div class="card-body fundo-branco">
-        <div class="container"><br>
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-4 bg-success espaco-interno-10 fonte-preta borda-solid borda-preta borda-radius-10">
-                    <h2 class="centralizar-texto">Editar Informações do Usuário {{ usuario.nome }}</h2>
-                    <form action="" method="POST">
-                        {{ form.hidden_tag() }}
-                        <div class="form-group">
-                            <label for="exampleInputNome1">
-                                {{ form.nome.label }}
-                            </label>
-                            <input type="text" class="form-control" id="exampleInputNome1" name="nome"
-                                value="{{ form.nome.data }}">
-                            {% for error in form.nome.errors %}
-                            <span style="color: red;">
-                                [{{ error }}]
-                            </span>
-                            {% endfor %}
-                        </div>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="container">
+            <h3 class="espaco-interno-10">Editar informações de {{ usuario.nome }}</h3>
 
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">
-                                {{ form.email.label }}
-                            </label>
-                            <input type="text" class="form-control" name="email" id="exampleInputEmail1"
-                                value="{{ form.email.data }}" readonly>
-                            {% for error in form.email.errors %}
-                            <span style="color: red;">
-                                [{{ error }}]
-                            </span>
-                            {% endfor %}
-                        </div>
-
-                        <div class="dropdown-divider espaco-externo-vertical-10"></div>
-
-                        <div class="row text-center">
-                            <div class="col espaco-externo-topo-10">
-                                <button type="submit" name="salvarAlteracoes" class="btn btn-dark">
-                                    Salvar alterações
-                                </button>
-                            </div>
-
-                            <div class="col espaco-externo-topo-10">
-                                <a href="{{ url_for('index_user') }}" name="cancelar" class="btn btn-dark">
-                                    Cancelar
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+            <div class="row">
+                <div class="col-3 espaco-interno-10">
+                    <div class="nav flex-column nav-pills borda-solid borda-radius-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-perfil-tab" data-toggle="pill" href="#v-pills-perfil"
+                            role="tab" aria-controls="v-pills-perfil" aria-selected="true">Perfil</a>
+                        <a class="nav-link" id="v-pills-endereco-tab" data-toggle="pill" href="#v-pills-endereco"
+                            role="tab" aria-controls="v-pills-endereco" aria-selected="false">Endereço</a>
+                        <a class="nav-link" id="v-pills-senha-tab" data-toggle="pill" href="#v-pills-senha" role="tab"
+                            aria-controls="v-pills-senha" aria-selected="false">Alterar senha</a>
+                    </div>
                 </div>
-            </div><br>
+
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-perfil" role="tabpanel"
+                            aria-labelledby="v-pills-perfil-tab">
+                            <!-- INFORMACOES PESSOAIS -->
+                            <div class="col espaco-interno-10" style="min-height: 75vh;">
+                                <div class="form-group">
+                                    <label for="inputNome">
+                                        {{ form.nome.label }}
+                                    </label>
+                                    <input type="text" class="form-control" id="inputNome" name="nome"
+                                        value="{{ form.nome.data }}">
+                                    {% for error in form.nome.errors %}
+                                    <span style="color: red;">
+                                        [{{ error }}]
+                                    </span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputNascimento">
+                                        {{ form.nascimento.label }}
+                                    </label>
+                                    <input type="date" class="form-control" id="inputNascimento" name="nascimento"
+                                        value="{{ form.nascimento.data }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputTelefone">
+                                        {{ form.telefone.label }}
+                                    </label>
+                                    <input type="text" class="form-control cpf" id="inputTelefone" name="telefone"
+                                        value="{{ form.telefone.data }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputCpf">
+                                        {{ form.cpf.label }}
+                                    </label>
+                                    <input type="text" class="form-control cpf" id="inputCpf" name="cpf"
+                                        value="{{ form.cpf.data }}" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail">
+                                        {{ form.email.label }}
+                                    </label>
+                                    <input type="email" class="form-control" id="inputEmail" name="email" value="{{ form.email.data }}" readonly>
+                                    {% for error in form.email.errors %}
+                                    <span style="color: red;">
+                                        [{{ error }}]
+                                    </span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="row">
+                                    <div class="col espaco-externo-topo-10">
+                                        <button type="submit" name="salvarAlteracoes" class="btn btn-dark">
+                                            Salvar alterações
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- INFORMACOES DE LOCALIZACAO -->
+                        <div class="tab-pane fade" id="v-pills-endereco" role="tabpanel"
+                            aria-labelledby="v-pills-endereco-tab">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="inputCep">{{ form.cep.label }}</label>
+                                    <input type="text" class="form-control cep" name="cep" id="inputCep"
+                                        value="{{ form.cep.data }}">
+
+                                    {% for error in form.cep.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputLogradouro">{{ form.logradouro.label }}</label>
+                                    <input type="text" class="form-control" name="logradouro" id="inputLogradouro"
+                                        value="{{ form.logradouro.data }}" readonly>
+                                    {% for error in form.logradouro.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputNumero">{{ form.numero.label }}</label>
+                                    <input type="text" class="form-control" name="numero" id="inputNumero"
+                                        value="{{ form.numero.data }}">
+                                    {% for error in form.numero.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputComplemento">{{ form.complemento.label }}</label>
+                                    <input type="text" class="form-control" name="complemento" id="inputComplemento"
+                                        value="{{ form.complemento.data }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputReferencia">{{ form.referencia.label }}</label>
+                                    <textarea type="text" class="form-control" name="referencia" id="inputReferencia"
+                                        style="resize: none;">{{ form.referencia.data }}</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputBairro">{{ form.bairro.label }}</label>
+                                    <input type="text" class="form-control" name="bairro" id="inputBairro"
+                                        value="{{ form.bairro.data }}" readonly>
+                                    {% for error in form.bairro.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputCidade">{{ form.cidade.label }}</label>
+                                    <input type="text" class="form-control" name="cidade" id="inputCidade"
+                                        value="{{ form.cidade.data }}" readonly>
+                                    {% for error in form.cidade.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEstado">{{ form.estado.label }}</label>
+                                    <select class="form-control cep" name="estado" id="inputEstado"
+                                        style="pointer-events: none; touch-action: none;" readonly>
+                                        {% for e in estados %}
+                                        {% if e == form.estado.data %}
+                                        <option selected>{{ e }}</option>
+                                        {% else %}
+                                        <option>{{ e }}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                    {% for error in form.estado.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="row">
+                                    <div class="col espaco-externo-topo-10">
+                                        <button type="submit" name="salvarAlteracoes" class="btn btn-dark">
+                                            Salvar alterações
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- INFORMACOES PESSOAIS -->
+                        <div class="tab-pane fade" id="v-pills-senha" role="tabpanel"
+                            aria-labelledby="v-pills-senha-tab">
+                            <div class="col" style="min-height: 75vh;">
+                                <div class="form-group">
+                                    <label for="inputSenhaAtual">
+                                        {{ form.senha_atual.label }}
+                                    </label>
+                                    <input type="password" class="form-control" id="inputSenhaAtual" name="senha_atual">
+                                    {% for error in form.senha_atual.errors %}
+                                    <span style="color: red;">
+                                        [{{ error }}]
+                                    </span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputNovaSenha">
+                                        {{ form.nova_senha.label }}
+                                    </label>
+                                    <input type="password" class="form-control" id="inputNovaSenha" name="nova_senha">
+                                    {% for error in form.nova_senha.errors %}
+                                    <span style="color: red;">
+                                        [{{ error }}]
+                                    </span>
+                                    {% endfor %}
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="inputConfirmarNovaSenha">
+                                        {{ form.confirmar_nova_senha.label }}
+                                    </label>
+                                    <input type="password" class="form-control" id="inputConfirmarNovaSenha" name="confirmar_nova_senha">
+                                    {% for error in form.confirmar_nova_senha.errors %}
+                                    <span style="color: red;">
+                                        [{{ error }}]
+                                    </span>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="row">
+                                    <div class="col espaco-externo-topo-10">
+                                        <button type="submit" name="salvarAlteracoes" class="btn btn-dark">
+                                            Salvar alterações
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 {% endblock %}

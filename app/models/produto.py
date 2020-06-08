@@ -2,9 +2,9 @@ from app import db
 
 produto_categoria = db.Table('produto_categoria',
                              db.Column('produto_id', db.Integer, db.ForeignKey(
-                                 'produto.id'), primary_key=True),
+                                 'produto.id'), primary_key = True),
                              db.Column('categoria_id', db.Integer, db.ForeignKey(
-                                 'categoria.id'), primary_key=True),
+                                 'categoria.id'), primary_key = True),
                              )
 
 
@@ -17,7 +17,7 @@ class Produto(db.Model):
     categorias_produto = db.relationship(
         'Categoria',
         secondary = produto_categoria,
-        backref = db.backref('produtos', lazy=True)
+        backref = db.backref('produtos', lazy = True)
     )
 
     def __repr__(self):

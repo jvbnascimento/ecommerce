@@ -4,6 +4,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user
 from werkzeug.urls import url_parse
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from app.controllers.forms import LoginForm
 from app.models.usuario import Usuario
 from app.models.categoria import Categoria
@@ -24,7 +26,7 @@ def login():
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(email=form.email.data).first()
 
-        if usuario is None or not usuario.check_senha(form.senha.data):
+        if usuario is None or not check_password_hash(usuario.senha, form.senha.data):
             flash('Email ou senha inválidos')
             return redirect(url_for('login'))
 

@@ -12,7 +12,6 @@ from app.models.usuario import Usuario
 
 current_port = '8080/'
 
-
 @app.route('/user/gerenciar_cadastros/editar_dados/<id>', methods=['GET', 'POST'])
 @login_required
 def editar_cadastro(id):
@@ -26,6 +25,7 @@ def editar_cadastro(id):
 
         if form.validate_on_submit():
             usuario.nome = form.nome.data
+            usuario.nascimento = form.nascimento.data
             usuario.email = form.email.data
 
             db.session.add(usuario)
@@ -36,6 +36,7 @@ def editar_cadastro(id):
         elif request.method == 'GET':
             form.nome.data = usuario.nome
             form.email.data = usuario.email
+            form.nascimento.data = usuario.nascimento
         
         return render_template(
             'editar_cadastro.html', 

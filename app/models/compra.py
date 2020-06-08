@@ -6,13 +6,13 @@ class CompraProduto(db.Model):
         'compra_id',
         db.Integer,
         db.ForeignKey('compra.id'),
-        primary_key=True
+        primary_key = True
     )
     produto_id = db.Column(
         'produto_id',
         db.Integer,
         db.ForeignKey('produto.id'),
-        primary_key=True
+        primary_key = True
     )
     quantidade_item = db.Column('quantidade_item', db.Integer)
     preco_item = db.Column('preco_item', db.Float)
@@ -26,7 +26,7 @@ class Compra(db.Model):
     usuario_id = db.Column(
         db.Integer,
         db.ForeignKey('usuario.id'),
-        nullable=False
+        nullable = False
     )
     produtos_compra = db.relationship('CompraProduto')
 
